@@ -7,18 +7,18 @@
   
   <title>题解 P2286 【[HNOI2004]宠物收养场】 | zl_just</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[HNOI2004]宠物收养场这题就是平衡树的板子但是仍有一些小坑发出来来让大家注意一下   首先是题意(可能我语文不好,理解错了):我本以为宠物和人总是在一个时间段指人与宠物之间要找到最优的方案以减少最终答案(那就很恶心了)但事实上就是单纯的模拟对人来说,如果还剩宠物就按照题意找出最佳的宠物并删除,否则就将人塞到另一颗树中对宠物来说也是如此 也就是我们要有两颗树:1234当有人来领宠物的时候">
+  <meta name="description" content="[HNOI2004]宠物收养场这题就是平衡树的板子但是仍有一些小坑发出来来让大家注意一下">
 <meta name="keywords" content="BST">
 <meta property="og:type" content="article">
 <meta property="og:title" content="题解 P2286 【[HNOI2004]宠物收养场】">
 <meta property="og:url" content="http://zljust.github.io/2019/06/18/P2286/index.html">
 <meta property="og:site_name" content="zl_just">
-<meta property="og:description" content="[HNOI2004]宠物收养场这题就是平衡树的板子但是仍有一些小坑发出来来让大家注意一下   首先是题意(可能我语文不好,理解错了):我本以为宠物和人总是在一个时间段指人与宠物之间要找到最优的方案以减少最终答案(那就很恶心了)但事实上就是单纯的模拟对人来说,如果还剩宠物就按照题意找出最佳的宠物并删除,否则就将人塞到另一颗树中对宠物来说也是如此 也就是我们要有两颗树:1234当有人来领宠物的时候">
+<meta property="og:description" content="[HNOI2004]宠物收养场这题就是平衡树的板子但是仍有一些小坑发出来来让大家注意一下">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-18T16:21:08.773Z">
+<meta property="og:updated_time" content="2019-06-18T16:31:59.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="题解 P2286 【[HNOI2004]宠物收养场】">
-<meta name="twitter:description" content="[HNOI2004]宠物收养场这题就是平衡树的板子但是仍有一些小坑发出来来让大家注意一下   首先是题意(可能我语文不好,理解错了):我本以为宠物和人总是在一个时间段指人与宠物之间要找到最优的方案以减少最终答案(那就很恶心了)但事实上就是单纯的模拟对人来说,如果还剩宠物就按照题意找出最佳的宠物并删除,否则就将人塞到另一颗树中对宠物来说也是如此 也就是我们要有两颗树:1234当有人来领宠物的时候">
+<meta name="twitter:description" content="[HNOI2004]宠物收养场这题就是平衡树的板子但是仍有一些小坑发出来来让大家注意一下">
   
     <link rel="alternate" href="/atom.xml" title="zl_just" type="application/atom+xml">
   
@@ -87,8 +87,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<p><a href="https://www.luogu.org/problemnew/show/P2286" target="_blank" rel="noopener">[HNOI2004]宠物收养场</a>这题就是平衡树的板子<br>但是仍有一些小坑<br>发出来来让大家注意一下  </p>
+        <p><a href="https://www.luogu.org/problemnew/show/P2286" target="_blank" rel="noopener">[HNOI2004]宠物收养场</a>这题就是平衡树的板子<br>但是仍有一些小坑<br>发出来来让大家注意一下<br><a id="more"></a></p>
 <h3 id="首先是题意-可能我语文不好-理解错了"><a href="#首先是题意-可能我语文不好-理解错了" class="headerlink" title="首先是题意(可能我语文不好,理解错了):"></a>首先是题意(可能我语文不好,理解错了):</h3><p>我本以为<code>宠物和人总是在一个时间段</code><br>指人与宠物之间要找到最优的方案以减少最终答案(那就很恶心了)<br>但事实上就是单纯的模拟<br>对人来说,如果还剩宠物就按照题意找出最佳的宠物并删除,否则就将人塞到另一颗树中<br>对宠物来说也是如此</p>
 <h2 id="也就是我们要有两颗树"><a href="#也就是我们要有两颗树" class="headerlink" title="也就是我们要有两颗树:"></a>也就是我们要有两颗树:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">当有人来领宠物的时候</span><br><span class="line">    如果宠物没了，就把人存起来； </span><br><span class="line">    否则就去找个满足要求的宠物让他领回去。</span><br><span class="line">当有宠物加入的时候，同理</span><br></pre></td></tr></table></figure>
 <p>看到有$Dalao$用技巧的,也有说写两颗树的,但我们完全可以利用$C++$写个类封装起来</p>
@@ -100,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zljust.github.io/2019/06/18/P2286/" data-id="cjx20s1w40000scu5tle2lhga" class="article-share-link">Share</a>
+      <a data-url="http://zljust.github.io/2019/06/18/P2286/" data-id="cjx20zxtm000198u56sjqwmp4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BST/">BST</a></li></ul>
@@ -111,10 +110,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/06/18/Splay/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Splay
+        
+      </div>
+    </a>
   
-    <a href="/2019/06/18/Splay/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2019/06/18/逆序对/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Splay</div>
+      <div class="article-nav-title">逆序对</div>
     </a>
   
 </nav>
@@ -165,11 +173,11 @@
       <ul>
         
           <li>
-            <a href="/2019/06/18/P2286/">题解 P2286 【[HNOI2004]宠物收养场】</a>
+            <a href="/2019/06/18/Splay/">Splay</a>
           </li>
         
           <li>
-            <a href="/2019/06/18/Splay/">Splay</a>
+            <a href="/2019/06/18/P2286/">题解 P2286 【[HNOI2004]宠物收养场】</a>
           </li>
         
           <li>
