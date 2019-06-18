@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>题解 P5338 【[TJOI2019]甲苯先生的滚榜】 | zl_just</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="平衡树板子题不用担心 暴力删点 加点 开$O2$能过">
+<meta name="keywords" content="BST">
+<meta property="og:type" content="article">
+<meta property="og:title" content="题解 P5338 【[TJOI2019]甲苯先生的滚榜】">
+<meta property="og:url" content="http://zljust.github.io/2019/06/18/P5338/index.html">
+<meta property="og:site_name" content="zl_just">
+<meta property="og:description" content="平衡树板子题不用担心 暴力删点 加点 开$O2$能过">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-18T16:38:00.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="题解 P5338 【[TJOI2019]甲苯先生的滚榜】">
+<meta name="twitter:description" content="平衡树板子题不用担心 暴力删点 加点 开$O2$能过">
+  
+    <link rel="alternate" href="/atom.xml" title="zl_just" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zl_just</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zljust.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-P5338" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/18/P5338/" class="article-date">
+  <time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished">2019-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      题解 P5338 【[TJOI2019]甲苯先生的滚榜】
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平衡树板子题<br>不用担心 暴力删点 加点 开$O2$能过<br><a id="more"></a><br>反正省选能开 <del>为什么$NOIP$没有</del></p>
+<h3 id="First"><a href="#First" class="headerlink" title="First"></a>First</h3><p>用一个结构体保存节点<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">kkk</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> ac,rib;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ac==res.ac&amp;&amp;rib==res.rib;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ac&gt;res.ac||(ac==res.ac&amp;&amp;rib&lt;res.rib);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;= (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>&lt;res||*<span class="keyword">this</span>==res; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><del>我也不知道为什么要用这个名字</del></p>
+<h3 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h3><p>平衡树板子<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">略</span><br></pre></td></tr></table></figure></p>
+<p>见以下代码</p>
+<h2 id="Third-加点-删点"><a href="#Third-加点-删点" class="headerlink" title="Third 加点 删点"></a>Third 加点 删点</h2><p>用$AC[a]$表示$a$的题数,$RIB[b]$表示罚时<br>当$a$ $AC$了一题,罚时为$b$时<br>那我们删点{$AC[a]$,$RIB[a]$}<br>然后加点{$++AC[a]$,$RIB[a]+=b$} 并求排名就可以了   </p>
+<p>完整$CODE$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// luogu-judger-enable-o2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">kkk</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> ac,rib;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ac==res.ac&amp;&amp;rib==res.rib;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ac&gt;res.ac||(ac==res.ac&amp;&amp;rib&lt;res.rib);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;= (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>&lt;res||*<span class="keyword">this</span>==res; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> zl_just &#123;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Treap</span> &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000000</span> + <span class="number">5</span>;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">            T v;</span><br><span class="line">            <span class="keyword">int</span> c,s,r;</span><br><span class="line">            Node *ch[<span class="number">2</span>];</span><br><span class="line">            <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">cmp</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(x==v) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">return</span> v&lt;x;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ch_size</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123; <span class="keyword">return</span> ch[d]==<span class="literal">NULL</span>?<span class="number">0</span>:ch[d]-&gt;s; &#125;</span><br><span class="line">            <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>&#123; s=c+ch_size(<span class="number">0</span>)+ch_size(<span class="number">1</span>); &#125;</span><br><span class="line">        &#125;node[maxn];</span><br><span class="line">        Node* root;</span><br><span class="line">        <span class="keyword">int</span> size;</span><br><span class="line">        Treap() &#123; root=<span class="literal">NULL</span>; size=<span class="number">0</span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; root=<span class="literal">NULL</span>; size=<span class="number">0</span>; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">            Node *k=o-&gt;ch[d^<span class="number">1</span>]; o-&gt;ch[d^<span class="number">1</span>]=k-&gt;ch[d]; k-&gt;ch[d]=o; </span><br><span class="line">            o-&gt;maintain(); k-&gt;maintain(); o=k;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Node* &amp;o,T x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(o==<span class="literal">NULL</span>) &#123;</span><br><span class="line">                o=&amp;node[size++]; o-&gt;r=rand();</span><br><span class="line">                o-&gt;v=x; o-&gt;s=o-&gt;c=<span class="number">1</span>;</span><br><span class="line">                o-&gt;ch[<span class="number">0</span>]=o-&gt;ch[<span class="number">1</span>]=<span class="literal">NULL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">                <span class="keyword">if</span>(d==<span class="number">-1</span>) &#123; o-&gt;c++; o-&gt;s++; <span class="keyword">return</span> ; &#125;</span><br><span class="line">                insert(o-&gt;ch[d],x); o-&gt;maintain();</span><br><span class="line">                <span class="keyword">if</span>(o-&gt;ch[d]-&gt;r &gt; o-&gt;r) rotate(o,d^<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node* &amp;o,T x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(o==<span class="literal">NULL</span>) <span class="keyword">return</span> ;</span><br><span class="line">            <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">            <span class="keyword">if</span>(d==<span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(o-&gt;c &gt; <span class="number">1</span>) &#123; o-&gt;c--; o-&gt;s--; <span class="keyword">return</span> ; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(o-&gt;ch[<span class="number">0</span>]==<span class="literal">NULL</span>) o=o-&gt;ch[<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(o-&gt;ch[<span class="number">1</span>]==<span class="literal">NULL</span>) o=o-&gt;ch[<span class="number">0</span>];</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">int</span> d2 = (o-&gt;ch[<span class="number">0</span>]-&gt;r &gt; o-&gt;ch[<span class="number">1</span>]-&gt;r);</span><br><span class="line">                    rotate(o,d2); remove(o-&gt;ch[d2],x);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> remove(o-&gt;ch[d],x);</span><br><span class="line">            <span class="keyword">if</span>(o!=<span class="literal">NULL</span>) o-&gt;maintain();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">rank</span><span class="params">(Node *o,T x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> rk=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(o!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">                <span class="keyword">if</span>(d==<span class="number">-1</span>) <span class="keyword">return</span> rk+o-&gt;ch_size(<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">if</span>(d) rk+=o-&gt;ch_size(<span class="number">0</span>)+o-&gt;c;</span><br><span class="line">                o=o-&gt;ch[d];</span><br><span class="line">            &#125;  </span><br><span class="line">            <span class="keyword">return</span> rk;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//模板</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> zl_just;</span><br><span class="line"><span class="keyword">int</span> AC[<span class="number">1000005</span>],RIB[<span class="number">1000005</span>];</span><br><span class="line">Treap&lt;kkk&gt;treap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> ui;</span><br><span class="line">    <span class="function">ui <span class="title">randNum</span><span class="params">(ui&amp; seed, ui last, <span class="keyword">const</span> ui m)</span> </span>&#123;</span><br><span class="line">    seed = seed * <span class="number">17</span> + last;</span><br><span class="line">    <span class="keyword">return</span> seed % m + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">int</span> T,last=<span class="number">7</span>;</span><br><span class="line">    <span class="comment">//注意了,是开始为7,不是每组数据都重置为7</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        ui n,m,seed;</span><br><span class="line">        treap.clear();</span><br><span class="line">        <span class="built_in">memset</span>(AC,<span class="number">0</span>,<span class="keyword">sizeof</span> AC);</span><br><span class="line">        <span class="built_in">memset</span>(RIB,<span class="number">0</span>,<span class="keyword">sizeof</span> RIB);</span><br><span class="line">        <span class="comment">//数组一定要清干净!!!</span></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;m,&amp;n,&amp;seed);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> ui i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">            ui a=randNum(seed,last,m),b=randNum(seed,last,m);</span><br><span class="line">            treap.remove(treap.root,(kkk)&#123;AC[a],RIB[a]&#125;);</span><br><span class="line">            AC[a]++; RIB[a]+=b;</span><br><span class="line">            treap.insert(treap.root,(kkk)&#123;AC[a],RIB[a]&#125;);</span><br><span class="line">            <span class="comment">//其实可以便插便查排名</span></span><br><span class="line">            last=treap.rank(treap.root,(kkk)&#123;AC[a],RIB[a]&#125;);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,last);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;	</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zljust.github.io/2019/06/18/P5338/" data-id="cjx21o4wu0008mwu5n0fwe0uj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BST/">BST</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/18/P3369/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Treap模板
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/18/P4879/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">题解 P4879 【ycz的妹子】</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BST/">BST</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPFA/">SPFA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树状数组/">树状数组</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BST/" style="font-size: 20px;">BST</a> <a href="/tags/SPFA/" style="font-size: 10px;">SPFA</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/树状数组/" style="font-size: 15px;">树状数组</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/19/Welcome/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/19/P14398/">题解 P1438 【无聊的数列】</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/19/P4641/">P4641 【[BJWC2008]序列】</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/18/P2286/">题解 P2286 【[HNOI2004]宠物收养场】</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/18/P4042/">题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zl_just<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>P4641 【[BJWC2008]序列】 | zl_just</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="极其玄学的题目,好像没几个人通过,那我就讲下我的思路吧,看了下通过的巨佬的$Code$,好像没人和我一样,以下为毒瘤做法,好孩子不要学习">
+<meta name="keywords" content="其他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P4641 【[BJWC2008]序列】">
+<meta property="og:url" content="http://zljust.github.io/2019/06/19/P4641/index.html">
+<meta property="og:site_name" content="zl_just">
+<meta property="og:description" content="极其玄学的题目,好像没几个人通过,那我就讲下我的思路吧,看了下通过的巨佬的$Code$,好像没人和我一样,以下为毒瘤做法,好孩子不要学习">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-18T16:47:52.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="P4641 【[BJWC2008]序列】">
+<meta name="twitter:description" content="极其玄学的题目,好像没几个人通过,那我就讲下我的思路吧,看了下通过的巨佬的$Code$,好像没人和我一样,以下为毒瘤做法,好孩子不要学习">
+  
+    <link rel="alternate" href="/atom.xml" title="zl_just" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zl_just</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zljust.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-P4641" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/19/P4641/" class="article-date">
+  <time datetime="2019-06-18T16:00:00.000Z" itemprop="datePublished">2019-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      P4641 【[BJWC2008]序列】
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>极其玄学的题目,好像没几个人通过,那我就讲下我的思路吧,看了下通过的巨佬的$Code$,好像没人和我一样,以下为毒瘤做法,<del>好孩子不要学习</del></p>
+<h2 id><a href="#" class="headerlink" title></a><a id="more"></a></h2><h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><p>首先,一个数二进制第$i$为$1$的话,那么它肯定大于$2^{i}$,那它有没有上界呢,<del>好像没有</del>,不用怕,没有上界我们也要创造上界,我们把它模上$2^{i+1}$，那它不就有上界了嘛,所以分别$mod$ $2$,$4$,$8$…<br>我们可以建$16$颗权值线段树或平衡树查找区间$[2^{i},2^{i+1})$中数的个数  </p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>关键这题还有个修改操作,<br>因为$a+x$属于$[2^{i},2^{i+1})$,所以$a$属于$[2^{i}-x,2^{i+1}-x)$,<br>可还是有取模呢? </p>
+<p>我们大胆猜测$a$属于$[2^{i}-x(mod$ $2^{i+1}),2^{i+1}-x(mod$ $2^{i+1}))$<br><del>大家自己手玩一下也能推得出来</del>，$OI$<del>界不需要证明</del>  </p>
+<p>可左边界还有可能是负的呢?<br><del>没关系，继续大胆猜测</del><br>令$l=2^{i}-x(mod$ $2^{i+1})$,$r=2^{i+1}-x(mod$ $2^{i+1})-1$,$nr=2^{i+1}-1$<br>那此时$a$应属于$[0,r]$并上$[nr+l+1,nr]$<br>如果不懂的话就把它想象成一个环吧</p>
+<p><strong>关键还是分析，代码相信大家都能写出了，这种分析比较不容易的懂,建议大家自己去推，去手算</strong><br>毒瘤$Code$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">namespace</span> IO &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function">T <span class="title">read</span><span class="params">(T&amp; a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> c;</span><br><span class="line">        <span class="keyword">while</span>((a=getchar()-<span class="string">'0'</span>)) <span class="keyword">if</span>(a&gt;<span class="number">0</span>&amp;&amp;a&lt;=<span class="number">9</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">while</span>((c=getchar())) &#123;</span><br><span class="line">            <span class="keyword">if</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>) <span class="keyword">return</span> a;</span><br><span class="line">            a=a*<span class="number">10</span>+c-<span class="string">'0'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">get</span><span class="params">()</span> </span>&#123; <span class="keyword">int</span> c; <span class="keyword">while</span>((c=getchar())) <span class="keyword">if</span>(c==<span class="string">'A'</span>||c==<span class="string">'Q'</span>) <span class="keyword">return</span> c; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegmentTree</span> &#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1</span>&lt;&lt;<span class="number">18</span>;</span><br><span class="line">    <span class="keyword">int</span> s[maxn],lc[maxn],rc[maxn];</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> root[<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> o,<span class="keyword">int</span> L,<span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        s[o]=lc[o]=rc[o]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(L==R) <span class="keyword">return</span> ;</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        rc[o]=(lc[o]=size)+<span class="number">1</span>,size+=<span class="number">2</span>;</span><br><span class="line">        build(lc[o],L,mid);</span><br><span class="line">        build(rc[o],mid+<span class="number">1</span>,R);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SegmentTree() &#123;</span><br><span class="line">        size=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">15</span>;++i)</span><br><span class="line">            build(root[i]=size++,<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;(i+<span class="number">1</span>))<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> o,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(L==R) s[o]++;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(x&lt;=mid) insert(lc[o],L,mid,x);</span><br><span class="line">            <span class="keyword">else</span> insert(rc[o],mid+<span class="number">1</span>,R,x);</span><br><span class="line">            s[o]=s[lc[o]]+s[rc[o]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> o,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l&lt;=L&amp;&amp;r&gt;=R) <span class="keyword">return</span> s[o];</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>,res=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(l&lt;=mid) res=query(lc[o],L,mid,l,r);</span><br><span class="line">        <span class="keyword">if</span>(r&gt;mid) res+=query(rc[o],mid+<span class="number">1</span>,R,l,r);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    void Debug(int o,int L,int R)&#123;</span></span><br><span class="line"><span class="comment">        printf("L %d R %d s %d\n",L,R,s[o]);</span></span><br><span class="line"><span class="comment">        if(L==R) return ;</span></span><br><span class="line"><span class="comment">        int mid=(L+R)&gt;&gt;1;</span></span><br><span class="line"><span class="comment">        Debug(lc[o],L,mid);</span></span><br><span class="line"><span class="comment">        Debug(rc[o],mid+1,R);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;t;</span><br><span class="line"><span class="keyword">int</span> n,m,a;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> IO;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Mod(x,i) ((x)%(1&lt;&lt;(i)))</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    read(n); read(m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i) &#123;</span><br><span class="line">        read(x);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">15</span>;++j) &#123;</span><br><span class="line">            <span class="keyword">int</span> k=Mod(x,j+<span class="number">1</span>);</span><br><span class="line">            t.insert(t.root[j],<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;(j+<span class="number">1</span>))<span class="number">-1</span>,k);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(m--) &#123;</span><br><span class="line">        <span class="keyword">if</span>(get()==<span class="string">'A'</span>) read(x),a+=x,a=Mod(a,<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            read(x);</span><br><span class="line">            <span class="keyword">if</span>(x&gt;=<span class="number">16</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> k=Mod(a,x+<span class="number">1</span>),l=(<span class="number">1</span>&lt;&lt;x)-k,r=(<span class="number">1</span>&lt;&lt;(x+<span class="number">1</span>))-k<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">if</span>(l&lt;<span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> nr=(<span class="number">1</span>&lt;&lt;(x+<span class="number">1</span>))<span class="number">-1</span>;</span><br><span class="line">                ans+=t.query(t.root[x],<span class="number">0</span>,nr,nr+l+<span class="number">1</span>,nr);</span><br><span class="line">                l=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ans+=t.query(t.root[x],<span class="number">0</span>,(<span class="number">1</span>&lt;&lt;(x+<span class="number">1</span>))<span class="number">-1</span>,l,r);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zljust.github.io/2019/06/19/P4641/" data-id="cjx21o4wp0004mwu51d2w1zvx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/19/P14398/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          题解 P1438 【无聊的数列】
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/18/P2286/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">题解 P2286 【[HNOI2004]宠物收养场】</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BST/">BST</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPFA/">SPFA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树状数组/">树状数组</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BST/" style="font-size: 20px;">BST</a> <a href="/tags/SPFA/" style="font-size: 10px;">SPFA</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/树状数组/" style="font-size: 15px;">树状数组</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/19/Welcome/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/19/P14398/">题解 P1438 【无聊的数列】</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/19/P4641/">P4641 【[BJWC2008]序列】</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/18/P2286/">题解 P2286 【[HNOI2004]宠物收养场】</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/18/P4042/">题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zl_just<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
