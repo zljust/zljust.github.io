@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Splay | zl_just</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="初号机1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Splay">
+<meta property="og:url" content="http://zljust.github.io/2019/06/18/Splay/index.html">
+<meta property="og:site_name" content="zl_just">
+<meta property="og:description" content="初号机1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-18T16:21:18.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Splay">
+<meta name="twitter:description" content="初号机1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011">
+  
+    <link rel="alternate" href="/atom.xml" title="zl_just" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zl_just</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zljust.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Splay" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/18/Splay/" class="article-date">
+  <time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished">2019-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Splay
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h1 id="初号机"><a href="#初号机" class="headerlink" title="初号机"></a>初号机</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">read</span><span class="params">(T&amp; a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    <span class="keyword">while</span>((a=getchar()-<span class="string">'0'</span>)) <span class="keyword">if</span>(a&gt;<span class="number">0</span>&amp;&amp;a&lt;=<span class="number">9</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">while</span>((c=getchar())) &#123;</span><br><span class="line">        <span class="keyword">if</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>) <span class="keyword">return</span> a;</span><br><span class="line">        a=a*<span class="number">10</span>+c-<span class="string">'0'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">100000</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF =<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,s,filp;</span><br><span class="line">    Node* ch[<span class="number">2</span>];</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ch_size</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123; <span class="keyword">return</span> ch[d]?ch[d]-&gt;s:<span class="number">0</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>&#123; s=<span class="number">1</span>+ch_size(<span class="number">0</span>)+ch_size(<span class="number">1</span>); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">push_down</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!filp) <span class="keyword">return</span> ;</span><br><span class="line">        swap(ch[<span class="number">0</span>],ch[<span class="number">1</span>]); filp=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(ch[<span class="number">0</span>]) ch[<span class="number">0</span>]-&gt;filp^=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(ch[<span class="number">1</span>]) ch[<span class="number">1</span>]-&gt;filp^=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ch_size(<span class="number">0</span>)+<span class="number">1</span>==k) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> ch_size(<span class="number">0</span>)+<span class="number">1</span>&lt;k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;node[maxn];</span><br><span class="line"><span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">creat</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    o=&amp;node[++size]; o-&gt;v=x;</span><br><span class="line">    o-&gt;s=<span class="number">1</span>; o-&gt;filp=<span class="number">0</span>;</span><br><span class="line">    o-&gt;ch[<span class="number">0</span>]=o-&gt;ch[<span class="number">1</span>]=<span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node* _build(Node* &amp;o,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span>* a) &#123;</span><br><span class="line">    <span class="keyword">if</span>(L&gt;R) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    creat(o,a[mid]);</span><br><span class="line">    _build(o-&gt;ch[<span class="number">0</span>],L,mid<span class="number">-1</span>,a);</span><br><span class="line">    _build(o-&gt;ch[<span class="number">1</span>],mid+<span class="number">1</span>,R,a);</span><br><span class="line">    o-&gt;maintain();</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">build</span><span class="params">(<span class="keyword">int</span>* a,<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    Node* root=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> _build(root,<span class="number">1</span>,n,a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">    Node* k=o-&gt;ch[d^<span class="number">1</span>]; o-&gt;ch[d^<span class="number">1</span>]=k-&gt;ch[d],k-&gt;ch[d]=o;</span><br><span class="line">    o-&gt;maintain(); k-&gt;maintain(); o=k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(o==<span class="literal">NULL</span>) <span class="keyword">return</span> creat(o,x);</span><br><span class="line">    insert(o-&gt;ch[o-&gt;v &lt; x],x);</span><br><span class="line">    o-&gt;maintain();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    o-&gt;push_down();</span><br><span class="line">    <span class="keyword">int</span> d=o-&gt;cmp(k);</span><br><span class="line">    <span class="keyword">if</span>(d==<span class="number">1</span>) k-=o-&gt;ch_size(<span class="number">0</span>)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(d!=<span class="number">-1</span>) &#123;</span><br><span class="line">        Node* p=o-&gt;ch[d];</span><br><span class="line">        p-&gt;push_down();</span><br><span class="line">        <span class="keyword">int</span> d2=p-&gt;cmp(k),k2=k-(d2?(p-&gt;ch_size(<span class="number">0</span>)+<span class="number">1</span>):<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(d2!=<span class="number">-1</span>) &#123;</span><br><span class="line">            splay(p-&gt;ch[d2],k2);</span><br><span class="line">            <span class="keyword">if</span>(d==d2) rotate(o,d^<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> rotate(o-&gt;ch[d],d);</span><br><span class="line">        &#125;</span><br><span class="line">        rotate(o,d^<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Node* <span class="title">merge</span><span class="params">(Node* left,Node* right)</span> </span>&#123;</span><br><span class="line">    splay(left,left-&gt;s);</span><br><span class="line">    left-&gt;ch[<span class="number">1</span>]=right;</span><br><span class="line">    left-&gt;maintain();</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">(Node* o,<span class="keyword">int</span> k,Node* &amp;left,Node* &amp;right)</span> </span>&#123;</span><br><span class="line">    splay(o,k);</span><br><span class="line">    left=o,right=o-&gt;ch[<span class="number">1</span>];</span><br><span class="line">    o-&gt;ch[<span class="number">1</span>]=<span class="literal">NULL</span>;</span><br><span class="line">    left-&gt;maintain();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> first=<span class="literal">false</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Node* o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(o==<span class="literal">NULL</span>) <span class="keyword">return</span> ;</span><br><span class="line">    o-&gt;push_down();</span><br><span class="line">    dfs(o-&gt;ch[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">if</span>(o-&gt;v!=INF) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!first) first=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">putchar</span>(<span class="string">' '</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d"</span>,o-&gt;v);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(o-&gt;ch[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l,r;</span><br><span class="line">    read(n); read(m);</span><br><span class="line">    a[<span class="number">1</span>]=INF;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i) a[i+<span class="number">1</span>]=i;</span><br><span class="line">    Node* root=build(a,n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">while</span>(m--) &#123;</span><br><span class="line">        read(l); read(r);</span><br><span class="line">        Node *left,*right,*mid,*o;</span><br><span class="line">        split(root,l,left,o);</span><br><span class="line">        split(o,r-l+<span class="number">1</span>,mid,right);</span><br><span class="line">        mid-&gt;filp^=<span class="number">1</span>;</span><br><span class="line">        root=merge(merge(left,mid),right);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(root);</span><br><span class="line">    <span class="keyword">return</span> !<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zljust.github.io/2019/06/18/Splay/" data-id="cjx20s1we0001scu5t9t4hqgh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/18/P2286/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          题解 P2286 【[HNOI2004]宠物收养场】
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/18/逆序对/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">逆序对</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BST/">BST</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BST/" style="font-size: 10px;">BST</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/18/P2286/">题解 P2286 【[HNOI2004]宠物收养场】</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/18/Splay/">Splay</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/18/逆序对/">逆序对</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zl_just<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
