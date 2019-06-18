@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>zl_just</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="zl_just">
+<meta property="og:url" content="http://zljust.github.io/2019/06/19/P2286/index.html">
+<meta property="og:site_name" content="zl_just">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-18T16:18:15.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zl_just">
+  
+    <link rel="alternate" href="/atom.xml" title="zl_just" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zl_just</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zljust.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-P2286" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/19/P2286/" class="article-date">
+  <time datetime="2019-06-18T16:17:42.803Z" itemprop="datePublished">2019-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id><a href="#" class="headerlink" title></a><a id="more"></a></h2><h2 id="title-题解-P2286-【-HNOI2004-宠物收养场】"><a href="#title-题解-P2286-【-HNOI2004-宠物收养场】" class="headerlink" title="title: 题解 P2286 【[HNOI2004]宠物收养场】"></a>title: 题解 P2286 【[HNOI2004]宠物收养场】</h2><p><a href="https://www.luogu.org/problemnew/show/P2286" target="_blank" rel="noopener">[HNOI2004]宠物收养场</a>这题就是平衡树的板子<br>但是仍有一些小坑<br>发出来来让大家注意一下  </p>
+<h3 id="首先是题意-可能我语文不好-理解错了"><a href="#首先是题意-可能我语文不好-理解错了" class="headerlink" title="首先是题意(可能我语文不好,理解错了):"></a>首先是题意(可能我语文不好,理解错了):</h3><p>我本以为<code>宠物和人总是在一个时间段</code><br>指人与宠物之间要找到最优的方案以减少最终答案(那就很恶心了)<br>但事实上就是单纯的模拟<br>对人来说,如果还剩宠物就按照题意找出最佳的宠物并删除,否则就将人塞到另一颗树中<br>对宠物来说也是如此</p>
+<h2 id="也就是我们要有两颗树"><a href="#也就是我们要有两颗树" class="headerlink" title="也就是我们要有两颗树:"></a>也就是我们要有两颗树:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">当有人来领宠物的时候</span><br><span class="line">    如果宠物没了，就把人存起来； </span><br><span class="line">    否则就去找个满足要求的宠物让他领回去。</span><br><span class="line">当有宠物加入的时候，同理</span><br></pre></td></tr></table></figure>
+<p>看到有$Dalao$用技巧的,也有说写两颗树的,但我们完全可以利用$C++$写个类封装起来</p>
+<p>$Class$如下(这只是要了解类怎么写就好了,$Treap$还是$Splay$看个人喜好,不会平衡树我也就很无奈了,<del>不要再吐槽指针和码风了</del>)<br>注释应该很清晰了<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Treap</span> &#123;</span></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">  <span class="comment">//private修饰的话,只能再结构体内部访问</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">80000</span>;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">1</span>&lt;&lt;<span class="number">30</span>;   <span class="comment">//静态成员变量,一个属于结构体的变量</span></span><br><span class="line">  <span class="keyword">int</span> size;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,r,s;</span><br><span class="line">    Node *ch[<span class="number">2</span>];</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;  <span class="comment">//通过比较函数可以很好的改变树的优先级</span></span><br><span class="line">      <span class="keyword">if</span>(x==v) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      <span class="keyword">return</span> x&gt;v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ch_size</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (ch[d]==<span class="literal">NULL</span>)?<span class="number">0</span>:ch[d]-&gt;s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      s=<span class="number">1</span>+ch_size(<span class="number">0</span>)+ch_size(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;node[maxn];</span><br><span class="line">  Node *root;</span><br><span class="line">  <span class="comment">//树根,初始话时为空</span></span><br><span class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">    Node *k=o-&gt;ch[d^<span class="number">1</span>]; o-&gt;ch[d^<span class="number">1</span>]=k-&gt;ch[d]; k-&gt;ch[d]=o;</span><br><span class="line">    o-&gt;maintain(); k-&gt;maintain(); o=k;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">insert_node</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(o==<span class="literal">NULL</span>) &#123;</span><br><span class="line">      o=&amp;node[size++];</span><br><span class="line">      o-&gt;v=x; o-&gt;r=rand();</span><br><span class="line">      o-&gt;s=<span class="number">1</span>;</span><br><span class="line">      o-&gt;ch[<span class="number">0</span>]=o-&gt;ch[<span class="number">1</span>]=<span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">      insert_node(o-&gt;ch[d],x); o-&gt;maintain();</span><br><span class="line">      <span class="keyword">if</span>(o-&gt;ch[d]-&gt;r &gt; o-&gt;r) rotate(o,d^<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">remove_node</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(o==<span class="literal">NULL</span>) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">    <span class="keyword">if</span>(d==<span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(o-&gt;ch[<span class="number">0</span>]==<span class="literal">NULL</span>) o=o-&gt;ch[<span class="number">1</span>];</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(o-&gt;ch[<span class="number">1</span>]==<span class="literal">NULL</span>) o=o-&gt;ch[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">int</span> d2=(o-&gt;ch[<span class="number">0</span>]-&gt;r &gt; o-&gt;ch[<span class="number">1</span>]-&gt;r);</span><br><span class="line">    rotate(o,d2); remove_node(o-&gt;ch[d2],x);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> remove_node(o-&gt;ch[d],x);</span><br><span class="line">    <span class="keyword">if</span>(o!=<span class="literal">NULL</span>) o-&gt;maintain();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">get_last</span><span class="params">(Node* o,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> last=-INF;     <span class="comment">//没有前驱时返回一个极小值</span></span><br><span class="line">    <span class="keyword">while</span>(o!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(o-&gt;v &lt; x) last=o-&gt;v,o=o-&gt;ch[<span class="number">1</span>];  <span class="comment">//题面没说人和宠物的特点值不会相同,如果允许相同的话应改成 "&lt;=",但玄学AC</span></span><br><span class="line">      <span class="keyword">else</span> o=o-&gt;ch[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> last;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">get_next</span><span class="params">(Node* o,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> next=INF;</span><br><span class="line">    <span class="keyword">while</span>(o!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(o-&gt;v &gt; x) next=o-&gt;v,o=o-&gt;ch[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">else</span> o=o-&gt;ch[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span>:  <span class="comment">//允许在结构体外访问</span></span><br><span class="line">  Treap() &#123; root=<span class="literal">NULL</span>; size=<span class="number">0</span>; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> root==<span class="literal">NULL</span>; &#125;</span><br><span class="line">  <span class="comment">//包皮封装</span></span><br><span class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    insert_node(root,x);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    remove_node(root,x);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">last</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get_last(root,x);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">next</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get_next(root,x);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;treap[<span class="number">2</span>];</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="然后是主程序"><a href="#然后是主程序" class="headerlink" title="然后是主程序"></a>然后是主程序</h2><p>了解题意后我们发现人和宠物没有区别 <del>(出题人的想法?)</del><br>就可以利用取反运算一致对待了<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1000000</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c,f=<span class="number">1</span>;  a=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>((c=getchar()))  &#123;</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="string">'-'</span>) f=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        a=a*<span class="number">10</span>+c-<span class="string">'0'</span>;</span><br><span class="line">        c=getchar();</span><br><span class="line">    &#125;<span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>);</span><br><span class="line">    a*=f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n,p,x;</span><br><span class="line">  read(n);</span><br><span class="line">  <span class="keyword">while</span>(n--) &#123;</span><br><span class="line">    read(p); read(x);</span><br><span class="line">    <span class="keyword">if</span>(treap[p^<span class="number">1</span>].empty()) treap[p].insert(x);、</span><br><span class="line">    <span class="comment">//另一颗树为空,存起来</span></span><br><span class="line">    <span class="keyword">else</span> &#123;  <span class="comment">//找到符合题意的人(或宠物)并删去</span></span><br><span class="line">      <span class="keyword">int</span> a=treap[p^<span class="number">1</span>].last(x),b=treap[p^<span class="number">1</span>].next(x);</span><br><span class="line">      <span class="keyword">if</span>(x-a&lt;=b-x) &#123;</span><br><span class="line">        ans=(ans+x-a)%mod;</span><br><span class="line">        treap[p^<span class="number">1</span>].remove(a);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> &#123;</span><br><span class="line">        ans=(ans+b-x)%mod;</span><br><span class="line">        treap[p^<span class="number">1</span>].remove(b);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>写起来真的很方便,大家为什么不喜欢指针呢 $QAQ$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zljust.github.io/2019/06/19/P2286/" data-id="cjx20i5wl0001xou5g4cj2siq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/19/逆序对/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/19/P2286/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/19/逆序对/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/19/Splay/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/18/hello-world/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zl_just<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

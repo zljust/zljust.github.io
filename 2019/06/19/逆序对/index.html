@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>zl_just</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="zl_just">
+<meta property="og:url" content="http://zljust.github.io/2019/06/19/逆序对/index.html">
+<meta property="og:site_name" content="zl_just">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.loli.net/2019/03/10/5c83e9495cdaf.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/10/5c83ea2ab1ea9.png">
+<meta property="og:updated_time" content="2019-06-18T16:17:10.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zl_just">
+<meta name="twitter:image" content="https://i.loli.net/2019/03/10/5c83e9495cdaf.png">
+  
+    <link rel="alternate" href="/atom.xml" title="zl_just" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zl_just</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zljust.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-逆序对" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/19/逆序对/" class="article-date">
+  <time datetime="2019-06-18T16:16:37.102Z" itemprop="datePublished">2019-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id><a href="#" class="headerlink" title></a><a id="more"></a></h2><h2 id="title-逆序对"><a href="#title-逆序对" class="headerlink" title="title: 逆序对"></a>title: 逆序对</h2><p><strong><em><a href="https://www.luogu.org/problemnew/show/P1908" target="_blank" rel="noopener">原题</a></em></strong></p>
+<h1 id="面对蒟蒻的逆序对"><a href="#面对蒟蒻的逆序对" class="headerlink" title="面对蒟蒻的逆序对"></a>面对<del>蒟蒻</del>的逆序对</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一看到题，我们脑海中的第一想法一定就是暴力,对于每个数$a[i]$找出$j<i$,并且$a[j]>a[i]$,很简单的思路，两个for循环，时间复杂度$O(n^2)$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">    read(a[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">        <span class="keyword">if</span>(a[j]&gt;a[i]) ans++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></i$,并且$a[j]></p>
+<p>但我相信没有人会在看到这样的数据规模还真会的码一遍暴力，更何况这都已经放在分治区了，在看到题解后我们就会成功学会了归并排序，又见识到了离散化+树状数组的骚操作</p>
+<h4 id="（完）"><a href="#（完）" class="headerlink" title="（完）"></a>（完）</h4><hr>
+<h2 id="正言"><a href="#正言" class="headerlink" title="正言"></a>正言</h2><p> 但这样就真的完了吗？作为一个善于思考的蒟蒻，我们不能被思维所定式，难道没有其他解决方案吗？</p>
+<p>回到我们的思维起点: <strong>对于每个数$a[i]$找出$j<i$,并且$a[j]>a[i]$</i$,并且$a[j]></strong></p>
+<p>这里的 <strong>找</strong> 如果用<code>for</code>循环实现，那么时间复杂度就是$O(n)$<br>有没有一种方法可以用更短的时间找出所以比$a[i]$小的数呢？<br>我们都知道在 <strong>有序序列</strong> 中，用二分可以在$O(logn)$的时间内找出比$a[i]$小的最大数的下标<code>x</code>,那么<code>x</code>便是对于当前所有关于$a[i]$的逆序对的个数，可是如果边排序边找，反而需要更多的时间了，我们假想有没有这样一种可以<strong>动态维护</strong>的有序序列  </p>
+<p>至此，我们就可以引出今天的主角了:</p>
+<h1 id="排序二叉树-Binary-Search-Tree"><a href="#排序二叉树-Binary-Search-Tree" class="headerlink" title="排序二叉树(Binary Search Tree)"></a>排序二叉树(Binary Search Tree)</h1><p>是不是听起很高大上，但是没关系，<strong>朴素的BST</strong>就像二分一样容易实现</p>
+<h2 id="BST的性质"><a href="#BST的性质" class="headerlink" title="BST的性质"></a>BST的性质</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">任意结点的左子树中的元素都比右子树小</span><br><span class="line">左，右子树仅为排序二叉树</span><br></pre></td></tr></table></figure>
+<p>但我们即使知道有这样一种数据结构又有何用？<br>举个例子，现在就有一棵排序二叉树：<br><img src="https://i.loli.net/2019/03/10/5c83e9495cdaf.png" alt><br>假定我们有一个元素$5$,如何找比它大的元素的个数呢？<br>别急，我们先试试把$5$插入到这棵树中<br>首先$5$比$7$小，所以为了维护BST的性质，我们先把$5$放在$7$的左子树，再来，$5$比$4$大，所以我们再把$5$放到$4$的右子树中…   </p>
+<p>最后，如果子树为空，就创立叶节点<br>那么插入$5$后的树应该是这样的:<br><img src="https://i.loli.net/2019/03/10/5c83ea2ab1ea9.png" alt>  </p>
+<p>我们再手算一下$5$逆序对的个数：$4$<br>这和树又有什么关系吗？<br>显然，我们发现<strong>由于右子树一定比左子树大</strong>，所以当元素向左插入时，<strong>右子树及其父节点就一定比这个数大</strong>，那么<strong>右子树及其父节点数就是这一层的逆序对数</strong>，当节点插入完成时，也就可以找到所以的逆序对数了，<strong>特殊地，当父节点与插入元素相等时，应放在右子树</strong>(想一想为什么？)</p>
+<p>例如：当$5$在插入第一层时，由于比$7$小，所以此时有$3$个逆序对，在统计节点数时我们不必遍历整棵右子树，只需附加一个<code>chr_node</code>来表示右子树及其根节点数，并进行维护</p>
+<p>那么，基此，我们就有了一个大概的递归算法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">插入元素时,若它比父节点小,那么ans加该节点及其右子树的元素个数,并将其递归调用到左子树中;</span><br><span class="line">否则维护该节点右子树的节点个数(即 chr_node++; ),并递归调用到右子树中</span><br><span class="line">当节点的左(或右)子树为空时,插入节点,并将其指针(下标)保存到父节点中</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong>我们再用结构体保存节点：</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> ch[<span class="number">2</span>];        <span class="comment">//ch[0]和ch[1]分别代表左右子节点</span></span><br><span class="line">    <span class="keyword">int</span> data,chr_node;</span><br><span class="line">    node() &#123; ch[<span class="number">0</span>]=ch[<span class="number">1</span>]=<span class="number">-1</span>; chr_node=<span class="number">1</span>; &#125;</span><br><span class="line">    <span class="comment">//chr_node代表该节点及其右子树元素个数,-1代表空指针</span></span><br><span class="line">&#125;tree[<span class="number">500010</span>];</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>插入代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> d,<span class="keyword">int</span> ch=<span class="number">0</span>)</span> </span>&#123;              <span class="comment">//ch为节点指针</span></span><br><span class="line">    <span class="keyword">if</span>(ch==<span class="number">-1</span>) &#123;</span><br><span class="line">        tree[en].data=d;</span><br><span class="line">        <span class="keyword">return</span> ch=en++;                   <span class="comment">//创造叶节点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(d&lt;tree[ch].data) &#123;</span><br><span class="line">        ans+=tree[ch].chr_node;           <span class="comment">//统计逆序对个数</span></span><br><span class="line">        tree[ch].ch[<span class="number">0</span>]=insert(d,tree[ch].ch[<span class="number">0</span>]);  <span class="comment">//保存左儿子,虽然对某些节点做了无用功</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        tree[ch].chr_node++;              <span class="comment">//维护右子树节点个数</span></span><br><span class="line">        tree[ch].ch[<span class="number">1</span>]=insert(d,tree[ch].ch[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以根据<strong>树的对称性</strong>进行压行(实在懒得改了<br>然后就大概能AC了，为什么说大概呢？<br>当构造出的树<strong>接近完全二叉树</strong>时,时间复杂度为O(nlogn),若数据<strong>几乎单调</strong>时,这时的树<strong>几乎是一条链</strong>,插入复杂度为O(n),总复杂度为O(n^2),但可以通过<strong>旋转</strong>构造<strong>平衡树</strong><br>但<del>由于数据比较水</del>，玄学地A了!!!(虽然跑的比归并慢了一倍</p>
+<p><a href="https://www.luogu.org/recordnew/show/16816700" target="_blank" rel="noopener">2439m/s</a>  </p>
+<p>另外，当遇到相同元素时，也可以<strong>提前结束递归以减少树的高度</strong>，降低查找与插入的时间，对策是在<code>void insert(int d, int ch =0)</code>中加入：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(d==tree[ch].data) &#123;</span><br><span class="line">    <span class="keyword">int</span> t=tree[ch].ch[<span class="number">1</span>];</span><br><span class="line">    ans+=(t==<span class="number">-1</span>)?<span class="number">0</span>:tree[t].chr_node; </span><br><span class="line">    tree[ch].chr_node++; </span><br><span class="line">&#125; </span><br><span class="line">``` </span><br><span class="line">(想一想为什么？)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">## 后言(对我一样的蒟蒻及其不友好</span><br><span class="line">如果用treap的话，常数和空间都比较大  </span><br><span class="line">这里给出[**treap**](https:<span class="comment">//www.luogu.org/recordnew/show/17058950)的代码，感兴趣的OIer可以参照蓝书和洛谷日报,以及其他大佬的题解  </span></span><br><span class="line">注释版：</span><br><span class="line">```cpp</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstdlib&gt;</span><br><span class="line">#include&lt;ctime&gt;</span><br><span class="line"></span><br><span class="line">struct node</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> v,r,s;</span><br><span class="line">    node *ch[<span class="number">2</span>];</span><br><span class="line">    node() &#123; ch[<span class="number">0</span>]=ch[<span class="number">1</span>]=<span class="literal">NULL</span>; s=<span class="number">1</span>; &#125;</span><br><span class="line">    <span class="comment">//s为包括自身的左右子树的总节点数</span></span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">int</span> cmp(<span class="keyword">int</span> x) &#123;</span><br><span class="line">        <span class="keyword">if</span>(x==v) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> x&gt;v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//用函数计算出方向，-1的话就表示重复了，不插入了</span></span><br><span class="line">    <span class="keyword">inline</span> <span class="keyword">int</span> ch_node(<span class="keyword">int</span> d) &#123;</span><br><span class="line">        <span class="keyword">return</span> (ch[d]==<span class="literal">NULL</span>)?<span class="number">0</span>:ch[d]-&gt;s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//即不包括父节点的左/右(0/1)子树节点数</span></span><br><span class="line">&#125;treap[<span class="number">500010</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> en=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//0代表左旋,1代表右右旋，参照蓝书</span></span><br><span class="line"><span class="keyword">void</span> rotate(node* &amp;o,<span class="keyword">int</span> d) &#123;</span><br><span class="line">    node *k=o-&gt;ch[d^<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> o1=o-&gt;s - o-&gt;ch_node(d^<span class="number">1</span>),k1=k-&gt;s - k-&gt;ch_node(d);</span><br><span class="line">    <span class="comment">//这一步可以自己画草图了解一下,利用了对称性压行,维护子节点数，自己想一想</span></span><br><span class="line">    o-&gt;ch[d^<span class="number">1</span>]=k-&gt;ch[d];</span><br><span class="line">    k-&gt;ch[d]=o;</span><br><span class="line">    k-&gt;s+=o1; o-&gt;s-=k1;</span><br><span class="line">    o=k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> insert(node* &amp;o,<span class="keyword">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">if</span>(o==<span class="literal">NULL</span>) &#123; o=&amp;(treap[en++]); o-&gt;v=x; o-&gt;r=rand(); &#125;</span><br><span class="line">    <span class="comment">//插入节点,利用随机化并维护堆的性质,确保树的高度不会太高</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">        <span class="keyword">if</span>(d==<span class="number">-1</span>) &#123; ans+=o-&gt;ch_node(<span class="number">1</span>); o-&gt;s++; <span class="keyword">return</span>; &#125;<span class="comment">//利用了上面的结论</span></span><br><span class="line">        <span class="keyword">if</span>(!d) ans+=o-&gt;s - o-&gt;ch_node(<span class="number">0</span>);   <span class="comment">//右子树及其根节点=总结点个数-左节点个数!=o-&gt;ch_node(1)+1，想一想为什么？</span></span><br><span class="line">        insert(o-&gt;ch[d],x);</span><br><span class="line">        o-&gt;s++;</span><br><span class="line">        <span class="keyword">if</span>(o-&gt;ch[d]-&gt;r &gt; o-&gt;r) rotate(o,d^<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//先插入，再维护节点数以及树的平衡</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> read(<span class="keyword">int</span> &amp;a) &#123;</span><br><span class="line">    <span class="keyword">int</span> c,f=<span class="number">1</span>;  a=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>((c=getchar()))  &#123;</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="string">'-'</span>) f=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        a=a*<span class="number">10</span>+c-<span class="string">'0'</span>;</span><br><span class="line">        c=getchar();</span><br><span class="line">    &#125;<span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>);</span><br><span class="line">    <span class="keyword">return</span> a*=f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main() &#123;</span><br><span class="line">    <span class="keyword">int</span> n,x;</span><br><span class="line">    node root;  <span class="comment">//虚拟根节点,防止真正根节点因旋转改变而丢失，避免了手动插入根节点</span></span><br><span class="line">    read(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) insert(root.ch[<span class="number">0</span>],read(x));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>&amp;<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>给一张草图体会旋转时节点数的变换吧 <del>(笑哭</del>  </p>
+<h2 id="草图"><a href="#草图" class="headerlink" title="草图 "></a><a href="https://i.loli.net/2019/03/10/5c83f93931a5b.png" target="_blank" rel="noopener"><strong>草图</strong></a> </h2><p><del>看在我这么认真的份上求通过吧<strong>QWQ</strong></del></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zljust.github.io/2019/06/19/逆序对/" data-id="cjx20i5wv0003xou5t25m6zry" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/19/P2286/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/19/Splay/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/19/P2286/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/19/逆序对/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/19/Splay/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/18/hello-world/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zl_just<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
