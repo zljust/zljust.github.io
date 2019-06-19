@@ -77,6 +77,24 @@
   </entry>
   
   <entry>
+    <title>Treap模板</title>
+    <link href="http://zljust.github.io/2019/06/18/P3369/"/>
+    <id>http://zljust.github.io/2019/06/18/P3369/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:42:04.588Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.luogu.org/problemnew/show/P3369&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;普通平衡树&lt;/a&gt;&lt;br&gt;板子:&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+    
+  </entry>
+  
+  <entry>
     <title>题解 P2286 【[HNOI2004]宠物收养场】</title>
     <link href="http://zljust.github.io/2019/06/18/P2286/"/>
     <id>http://zljust.github.io/2019/06/18/P2286/</id>
@@ -113,20 +131,21 @@
   </entry>
   
   <entry>
-    <title>Treap模板</title>
-    <link href="http://zljust.github.io/2019/06/18/P3369/"/>
-    <id>http://zljust.github.io/2019/06/18/P3369/</id>
+    <title>题解 P4879 【ycz的妹子】</title>
+    <link href="http://zljust.github.io/2019/06/18/P4879/"/>
+    <id>http://zljust.github.io/2019/06/18/P4879/</id>
     <published>2019-06-17T16:00:00.000Z</published>
-    <updated>2019-06-18T16:42:04.588Z</updated>
+    <updated>2019-06-18T16:45:28.762Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;https://www.luogu.org/problemnew/show/P3369&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;普通平衡树&lt;/a&gt;&lt;br&gt;板子:&lt;br&gt;
+      &lt;p&gt;当我去年啥都不会的时候做了这道题,然后爆零了&lt;br&gt;如今想了起来,作文以记之  &lt;/p&gt;
+&lt;h2 id&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title&gt;&lt;/a&gt;
     
     </summary>
     
     
-      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+      <category term="树状数组" scheme="http://zljust.github.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   
@@ -149,21 +168,20 @@
   </entry>
   
   <entry>
-    <title>题解 P4879 【ycz的妹子】</title>
-    <link href="http://zljust.github.io/2019/06/18/P4879/"/>
-    <id>http://zljust.github.io/2019/06/18/P4879/</id>
+    <title>Splay</title>
+    <link href="http://zljust.github.io/2019/06/18/Splay/"/>
+    <id>http://zljust.github.io/2019/06/18/Splay/</id>
     <published>2019-06-17T16:00:00.000Z</published>
-    <updated>2019-06-18T16:45:28.762Z</updated>
+    <updated>2019-06-18T16:40:12.087Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;当我去年啥都不会的时候做了这道题,然后爆零了&lt;br&gt;如今想了起来,作文以记之  &lt;/p&gt;
-&lt;h2 id&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title&gt;&lt;/a&gt;
+      &lt;h1 id=&quot;初号机&quot;&gt;&lt;a href=&quot;#初号机&quot; class=&quot;headerlink&quot; title=&quot;初号机&quot;&gt;&lt;/a&gt;初号机&lt;/h1&gt;
     
     </summary>
     
     
-      <category term="树状数组" scheme="http://zljust.github.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
+      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
     
   </entry>
   
@@ -178,24 +196,6 @@
     
       &lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.luogu.org/problemnew/show/P1908&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原题&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&quot;面对蒟蒻的逆序对&quot;&gt;&lt;a href=&quot;#面对蒟蒻的逆序对&quot; class=&quot;headerlink&quot; title=&quot;面对蒟蒻的逆序对&quot;&gt;&lt;/a&gt;面对&lt;del&gt;蒟蒻&lt;/del&gt;的逆序对&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;一看到题，我们脑海中的第一想法一定就是暴力,&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Splay</title>
-    <link href="http://zljust.github.io/2019/06/18/Splay/"/>
-    <id>http://zljust.github.io/2019/06/18/Splay/</id>
-    <published>2019-06-17T16:00:00.000Z</published>
-    <updated>2019-06-18T16:40:12.087Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;初号机&quot;&gt;&lt;a href=&quot;#初号机&quot; class=&quot;headerlink&quot; title=&quot;初号机&quot;&gt;&lt;/a&gt;初号机&lt;/h1&gt;
     
     </summary>
     
