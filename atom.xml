@@ -77,6 +77,24 @@
   </entry>
   
   <entry>
+    <title>题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】</title>
+    <link href="http://zljust.github.io/2019/06/18/P4042/"/>
+    <id>http://zljust.github.io/2019/06/18/P4042/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:39:41.335Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="SPFA" scheme="http://zljust.github.io/tags/SPFA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>题解 P2286 【[HNOI2004]宠物收养场】</title>
     <link href="http://zljust.github.io/2019/06/18/P2286/"/>
     <id>http://zljust.github.io/2019/06/18/P2286/</id>
@@ -128,24 +146,6 @@
     
     
       <category term="树状数组" scheme="http://zljust.github.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】</title>
-    <link href="http://zljust.github.io/2019/06/18/P4042/"/>
-    <id>http://zljust.github.io/2019/06/18/P4042/</id>
-    <published>2019-06-17T16:00:00.000Z</published>
-    <updated>2019-06-18T16:39:41.335Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="SPFA" scheme="http://zljust.github.io/tags/SPFA/"/>
     
   </entry>
   
