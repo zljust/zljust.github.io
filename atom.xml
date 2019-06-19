@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>zl_just</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://zljust.github.io/"/>
+  <updated>2019-06-18T17:02:37.323Z</updated>
+  <id>http://zljust.github.io/</id>
+  
+  <author>
+    <name>zl_just</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Welcome To My Blog</title>
+    <link href="http://zljust.github.io/2019/06/19/Welcome/"/>
+    <id>http://zljust.github.io/2019/06/19/Welcome/</id>
+    <published>2019-06-18T16:48:29.375Z</published>
+    <updated>2019-06-18T17:02:37.323Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;$ \Huge\color{blue} Welcome $ $ \Huge\color{blue} To $ $ \Huge\color{blue} My $ $ \Huge\color{blue} Blog
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>题解 P1438 【无聊的数列】</title>
+    <link href="http://zljust.github.io/2019/06/19/P14398/"/>
+    <id>http://zljust.github.io/2019/06/19/P14398/</id>
+    <published>2019-06-18T16:00:00.000Z</published>
+    <updated>2019-06-18T16:46:35.943Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;发现题解中全都用差分的,只有一个不是 &lt;del&gt;(居然撞思路了&lt;/del&gt;&lt;br&gt;但他没有仔细讲他的思路,与思考过程,那我就为他补充一下吧  &lt;/p&gt;
+&lt;h2 id&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title&gt;&lt;/a&gt;
+    
+    </summary>
+    
+    
+      <category term="树状数组" scheme="http://zljust.github.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>P4641 【[BJWC2008]序列】</title>
+    <link href="http://zljust.github.io/2019/06/19/P4641/"/>
+    <id>http://zljust.github.io/2019/06/19/P4641/</id>
+    <published>2019-06-18T16:00:00.000Z</published>
+    <updated>2019-06-18T16:47:52.400Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;极其玄学的题目,好像没几个人通过,那我就讲下我的思路吧,看了下通过的巨佬的$Code$,好像没人和我一样,以下为毒瘤做法,&lt;del&gt;好孩子不要学习&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title&gt;&lt;/a&gt;
+    
+    </summary>
+    
+    
+      <category term="其他" scheme="http://zljust.github.io/tags/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>题解 P2286 【[HNOI2004]宠物收养场】</title>
+    <link href="http://zljust.github.io/2019/06/18/P2286/"/>
+    <id>http://zljust.github.io/2019/06/18/P2286/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:31:59.451Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.luogu.org/problemnew/show/P2286&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;[HNOI2004]宠物收养场&lt;/a&gt;这题就是平衡树的板子&lt;br&gt;但是仍有一些小坑&lt;br&gt;发出来来让大家注意一下&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Treap模板</title>
+    <link href="http://zljust.github.io/2019/06/18/P3369/"/>
+    <id>http://zljust.github.io/2019/06/18/P3369/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:42:04.588Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://www.luogu.org/problemnew/show/P3369&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;普通平衡树&lt;/a&gt;&lt;br&gt;板子:&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】</title>
+    <link href="http://zljust.github.io/2019/06/18/P4042/"/>
+    <id>http://zljust.github.io/2019/06/18/P4042/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:39:41.335Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="SPFA" scheme="http://zljust.github.io/tags/SPFA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>题解 P5338 【[TJOI2019]甲苯先生的滚榜】</title>
+    <link href="http://zljust.github.io/2019/06/18/P5338/"/>
+    <id>http://zljust.github.io/2019/06/18/P5338/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:38:00.019Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;平衡树板子题&lt;br&gt;不用担心 暴力删点 加点 开$O2$能过&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>题解 P4879 【ycz的妹子】</title>
+    <link href="http://zljust.github.io/2019/06/18/P4879/"/>
+    <id>http://zljust.github.io/2019/06/18/P4879/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:45:28.762Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当我去年啥都不会的时候做了这道题,然后爆零了&lt;br&gt;如今想了起来,作文以记之  &lt;/p&gt;
+&lt;h2 id&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title&gt;&lt;/a&gt;
+    
+    </summary>
+    
+    
+      <category term="树状数组" scheme="http://zljust.github.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Splay</title>
+    <link href="http://zljust.github.io/2019/06/18/Splay/"/>
+    <id>http://zljust.github.io/2019/06/18/Splay/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:40:12.087Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;初号机&quot;&gt;&lt;a href=&quot;#初号机&quot; class=&quot;headerlink&quot; title=&quot;初号机&quot;&gt;&lt;/a&gt;初号机&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>逆序对</title>
+    <link href="http://zljust.github.io/2019/06/18/%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
+    <id>http://zljust.github.io/2019/06/18/逆序对/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:32:03.960Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://www.luogu.org/problemnew/show/P1908&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原题&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;面对蒟蒻的逆序对&quot;&gt;&lt;a href=&quot;#面对蒟蒻的逆序对&quot; class=&quot;headerlink&quot; title=&quot;面对蒟蒻的逆序对&quot;&gt;&lt;/a&gt;面对&lt;del&gt;蒟蒻&lt;/del&gt;的逆序对&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;一看到题，我们脑海中的第一想法一定就是暴力,&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+    
+  </entry>
+  
+</feed>
