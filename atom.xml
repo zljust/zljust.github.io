@@ -113,24 +113,6 @@
   </entry>
   
   <entry>
-    <title>题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】</title>
-    <link href="http://zljust.github.io/2019/06/18/P4042/"/>
-    <id>http://zljust.github.io/2019/06/18/P4042/</id>
-    <published>2019-06-17T16:00:00.000Z</published>
-    <updated>2019-06-18T16:39:41.335Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="SPFA" scheme="http://zljust.github.io/tags/SPFA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>题解 P4879 【ycz的妹子】</title>
     <link href="http://zljust.github.io/2019/06/18/P4879/"/>
     <id>http://zljust.github.io/2019/06/18/P4879/</id>
@@ -150,20 +132,20 @@
   </entry>
   
   <entry>
-    <title>Splay</title>
-    <link href="http://zljust.github.io/2019/06/18/Splay/"/>
-    <id>http://zljust.github.io/2019/06/18/Splay/</id>
+    <title>题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】</title>
+    <link href="http://zljust.github.io/2019/06/18/P4042/"/>
+    <id>http://zljust.github.io/2019/06/18/P4042/</id>
     <published>2019-06-17T16:00:00.000Z</published>
-    <updated>2019-06-18T16:40:12.087Z</updated>
+    <updated>2019-06-18T16:39:41.335Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;初号机&quot;&gt;&lt;a href=&quot;#初号机&quot; class=&quot;headerlink&quot; title=&quot;初号机&quot;&gt;&lt;/a&gt;初号机&lt;/h1&gt;
+      &lt;p&gt;首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,&lt;br&gt;
     
     </summary>
     
     
-      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+      <category term="SPFA" scheme="http://zljust.github.io/tags/SPFA/"/>
     
   </entry>
   
@@ -177,6 +159,24 @@
     <summary type="html">
     
       &lt;p&gt;平衡树板子题&lt;br&gt;不用担心 暴力删点 加点 开$O2$能过&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="BST" scheme="http://zljust.github.io/tags/BST/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Splay</title>
+    <link href="http://zljust.github.io/2019/06/18/Splay/"/>
+    <id>http://zljust.github.io/2019/06/18/Splay/</id>
+    <published>2019-06-17T16:00:00.000Z</published>
+    <updated>2019-06-18T16:40:12.087Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;初号机&quot;&gt;&lt;a href=&quot;#初号机&quot; class=&quot;headerlink&quot; title=&quot;初号机&quot;&gt;&lt;/a&gt;初号机&lt;/h1&gt;
     
     </summary>
     
