@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://zljust.github.io">
   <title>最短路学习笔记 | zl_just</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文将介绍两种最短路算法: 1.Dijkstra   2.SPFA ($floyd$:喂喂，我也太没有面子了吧!!!) 全为博主本人$yy$，与真正的算法解释有些不同 何为最短路?   就是在带权图(因为无权图上可以用$BFS$)上从一个源点$s$到终点$t$所需的最小花费,这两种算法都适用无向图和有向图 啥，你问图是神马？ 阿啦啦，那就为你解释一下吧:  这幅$picture$中圈起来的数字叫做">
+  <meta name="description" content="本文将介绍两种最短路算法: 1.Dijkstra   2.SPFA">
 <meta name="keywords" content="Dijkstra,SPFA - note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最短路学习笔记">
 <meta property="og:url" content="http://zljust.github.io/2019/06/21/最短路学习笔记/index.html">
 <meta property="og:site_name" content="zl_just">
-<meta property="og:description" content="本文将介绍两种最短路算法: 1.Dijkstra   2.SPFA ($floyd$:喂喂，我也太没有面子了吧!!!) 全为博主本人$yy$，与真正的算法解释有些不同 何为最短路?   就是在带权图(因为无权图上可以用$BFS$)上从一个源点$s$到终点$t$所需的最小花费,这两种算法都适用无向图和有向图 啥，你问图是神马？ 阿啦啦，那就为你解释一下吧:  这幅$picture$中圈起来的数字叫做">
+<meta property="og:description" content="本文将介绍两种最短路算法: 1.Dijkstra   2.SPFA">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2019/06/21/5d0cf9ac460a890456.png">
 <meta property="og:image" content="https://i.loli.net/2019/06/21/5d0cf9ac460a890456.png">
-<meta property="og:updated_time" content="2019-06-21T16:47:34.303Z">
+<meta property="og:updated_time" content="2019-06-21T16:50:24.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最短路学习笔记">
-<meta name="twitter:description" content="本文将介绍两种最短路算法: 1.Dijkstra   2.SPFA ($floyd$:喂喂，我也太没有面子了吧!!!) 全为博主本人$yy$，与真正的算法解释有些不同 何为最短路?   就是在带权图(因为无权图上可以用$BFS$)上从一个源点$s$到终点$t$所需的最小花费,这两种算法都适用无向图和有向图 啥，你问图是神马？ 阿啦啦，那就为你解释一下吧:  这幅$picture$中圈起来的数字叫做">
+<meta name="twitter:description" content="本文将介绍两种最短路算法: 1.Dijkstra   2.SPFA">
 <meta name="twitter:image" content="https://i.loli.net/2019/06/21/5d0cf9ac460a890456.png">
   
     <link rel="alternative" href="/atom.xml" title="zl_just" type="application/atom+xml">
@@ -180,7 +180,7 @@
       
         <p>本文将介绍两种最短路算法:</p>
 <p><strong>1.Dijkstra</strong>  </p>
-<p><strong>2.SPFA</strong></p>
+<p><strong>2.SPFA</strong><br><a id="more"></a></p>
 <p>($floyd$:喂喂，我也太没有面子了吧!!!)</p>
 <p><del>全为博主本人$yy$，与真正的算法解释有些不同</del></p>
 <p>何为最短路?  </p>
@@ -357,8 +357,8 @@
     </a>
   
   
-    <a href="/2019/06/19/P4641/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">P4641 【[BJWC2008]序列】</div>
+    <a href="/2019/06/19/P1438/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">题解 P1438 【无聊的数列】</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -516,14 +516,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">note</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BST</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">题解</a>
               </li>
              
@@ -532,11 +524,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SPFA</a>
+                <a href="javascript:void(0)" class="js-tag color4">BST</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">其他</a>
+                <a href="javascript:void(0)" class="js-tag color5">note</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SPFA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,6 +541,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
              
               <li class="article-tag-list-item">
