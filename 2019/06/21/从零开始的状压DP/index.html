@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://zljust.github.io">
-  <title>zl_just</title>
+  <title>从零开始的状压DP | zl_just</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zl_just">
-<meta property="og:url" content="http://zljust.github.io/index.html">
+  <meta name="description" content="啥，你说呢不知道什么叫做状压$DP$，没关系，我也不知道     本文包教包会，学会了记得点个赞">
+<meta name="keywords" content="DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的状压DP">
+<meta property="og:url" content="http://zljust.github.io/2019/06/21/从零开始的状压DP/index.html">
 <meta property="og:site_name" content="zl_just">
+<meta property="og:description" content="啥，你说呢不知道什么叫做状压$DP$，没关系，我也不知道     本文包教包会，学会了记得点个赞">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2019/06/21/5d0cb7f04ffac18834.png">
+<meta property="og:updated_time" content="2019-06-21T11:38:32.951Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zl_just">
+<meta name="twitter:title" content="从零开始的状压DP">
+<meta name="twitter:description" content="啥，你说呢不知道什么叫做状压$DP$，没关系，我也不知道     本文包教包会，学会了记得点个赞">
+<meta name="twitter:image" content="https://i.loli.net/2019/06/21/5d0cb7f04ffac18834.png">
   
     <link rel="alternative" href="/atom.xml" title="zl_just" type="application/atom+xml">
   
@@ -150,16 +157,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-从零开始的状压DP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-从零开始的状压DP" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/21/从零开始的状压DP/">从零开始的状压DP</a>
+    <h1 class="article-title" itemprop="name">
+      从零开始的状压DP
     </h1>
   
 
@@ -174,11 +179,59 @@
       
         <p>啥，你说呢不知道什么叫做状压$DP$，没关系，<del>我也不知道</del>    </p>
 <p><del>本文包教包会，学会了记得点个赞</del></p>
-        
-          <a class="article-more-a" href="/2019/06/21/从零开始的状压DP/#more">more >></a>
-        
+<a id="more"></a>  
+<p>前置芝士: 一点点DP思想$and$基础位运算</p>
+<h2 id="复杂状态的动规解法"><a href="#复杂状态的动规解法" class="headerlink" title="复杂状态的动规解法"></a>复杂状态的动规解法</h2><p><strong>Eg</strong> :  </p>
+<p>已知平面上有$n$个点($n$为偶数，n&lt;19)，找出一种点<strong>两两配对</strong>的方法使得点对之间的<strong>距离总和</strong>最小  </p>
+<p><strong>解析:</strong> </p>
+<p>我们将所有的点看成一个点集，记为$S$，$d(S)$表示所有点配对时距离的最小值，那我们很容易的得到这样的一个式子</p>
+<script type="math/tex; mode=display">
+d(S)=min \left\{\right.\ |P_iP_j| +\ d( S- \left\{\right. i \left.\right\}-\left\{\right.j \left. \right\}\ ) \left. \right\},i\in S,j\in S</script><p>那么决策数为$n^2$，状态数为$2^n$，总复杂度为$O(n^22^n)$   </p>
+<p>是不是感受到了$DP$的魅力</p>
+<p>不过我们发现,<strong>当状态为$S$时，我们不管先选择哪个点作为$i$，它迟早都要被选择</strong>,举个栗子吧  </p>
+<p>我们有点集{$1$,$2$,$3$$4$}(集合中为点的编号)，我先枚举第一个点，再枚举选择的第二个点，可第一个点就算选了$1$,而不选$2$，$2$也会在下一个状态中出现，并尝试与$3$,$4$点配对  </p>
+<p><img src="https://i.loli.net/2019/06/21/5d0cb7f04ffac18834.png" alt></p>
+<p>而$1$已经在第一轮与$2$尝试配对,并不会漏选状态，也就是说<strong>当有状态$S$时，我们只需要找出任意一个点，并枚举其他点与之配对，将决策数减少到了$n$</strong>,那那任意的一个点选哪个好呢?为了方便，我们就选集合中编号最小的一个点吧,状态转移方程就是</p>
+<script type="math/tex; mode=display">
+d(S)=min \left\{\right.\ |P_iP_j| +\ d( S- \left\{\right. i \left.\right\}-\left\{\right.j \left. \right\}\ ) \left. \right\},i=min\ S,j\in S</script><p>复杂度优化到了$O(n2^n)$  </p>
+<p>再看下面的一道相同的例题:  <a href="https://www.luogu.org/problemnew/show/P2831" target="_blank" rel="noopener">愤怒的小鸟</a>  </p>
+<p><strong>题目描述:</strong>  </p>
+<p>平面是有$n$(n&lt;=18)个点,选择任意个的点配对，满足这些点都在<strong>同一条抛物线</strong>上，这条抛物线<strong>过原点</strong>且抛物线<strong>开口朝下</strong>,求一种配对方法使所配对数最少</p>
+<p><strong>解析:</strong>  </p>
+<p>同样我们将这些点看成集合$S$,$d(S)$表示所需最少的配对数，由初中知识，确定一条抛物线至少需要三个点，因为已知了原点，所以我们每次配对只需枚举两个点</p>
+<p>那我们同样有</p>
+<script type="math/tex; mode=display">
+d(S)=min \left\{\right. \ d( S- F(i,j)) \left. \right\}+1,i=min\ S,j\in S,F(i,j)\notin \phi</script><p>$F(i,j)$表示$i$和$j$点所组成抛物线的点集，如果$i$,$j$不能组成符合题意的，那我们就不允许状态转移，但我们同样要注意一点，如果对于任意一点都无法与$i$配对成合法抛物线，那我们进行这样的转移</p>
+<script type="math/tex; mode=display">
+d(S)=\ d(S\ -\left\{\right. i \left. \right\} )+1,i=min\ S</script><p>对于$F(i,j)$的计算我们只需$O(n^3)$预处理了</p>
+<p>$Code$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">19</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">10e-8</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> f[maxn][maxn],d[<span class="number">1</span>&lt;&lt;maxn];</span><br><span class="line"><span class="keyword">double</span> x[maxn],y[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">double</span> x,<span class="keyword">double</span> y,<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> newy=x*(a*x+b);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">abs</span>(newy-y)&lt;eps;</span><br><span class="line">    <span class="comment">//判断点(x,y)是否在抛物线y=a*x^2+b*x上,并允许一定的误差</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!S) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//空集,不需要配对</span></span><br><span class="line">    <span class="keyword">if</span>(d[S]) <span class="keyword">return</span> d[S];</span><br><span class="line">    d[S]=INF;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(!(S&amp;(<span class="number">1</span>&lt;&lt;i))) ++i;<span class="comment">//找出最小没被配对的点</span></span><br><span class="line">    d[S]=min(d[S],dp(S-(<span class="number">1</span>&lt;&lt;i))+<span class="number">1</span>);<span class="comment">//进行状态转移二</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;n;++j) <span class="keyword">if</span>(S&amp;(<span class="number">1</span>&lt;&lt;j)&amp;&amp;f[i][j])</span><br><span class="line">        d[S]=min(d[S],dp(S&amp;(~(f[i][j])))+<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//转移一,S&amp;(~(f[i][j]))即S-F(i,j)</span></span><br><span class="line">    <span class="keyword">return</span> d[S];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;x[i],&amp;y[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;++j) &#123;</span><br><span class="line">                <span class="keyword">if</span>(x[i]==x[j]||x[i]*y[j]==x[j]*y[i]) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="comment">//x[i]*y[j]==x[j]*y[i]即判断三点是否共线</span></span><br><span class="line">                <span class="keyword">double</span> a=(x[i]*y[j]-x[j]*y[i])/((x[i]*x[j])*(x[j]-x[i])),b=(y[i]-a*x[i]*x[i])/x[i];</span><br><span class="line">                <span class="keyword">if</span>(a&gt;<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;++k) <span class="keyword">if</span>(check(x[k],y[k],a,b)) f[i][j]+=<span class="number">1</span>&lt;&lt;k;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp((<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>));</span><br><span class="line">        <span class="built_in">memset</span>(d,<span class="number">0</span>,<span class="keyword">sizeof</span> d);</span><br><span class="line">        <span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span> f);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$Q.E.D$  </p>
+<p>练习题大家自己找吧，毕竟我也是新手  $qwq$</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -198,16 +251,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/21/从零开始的状压DP/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://zljust.github.io/2019/06/21/从零开始的状压DP/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/19/P14398/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">题解 P1438 【无聊的数列】</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -227,698 +339,25 @@
 
 
 
-
-  
-    <article id="post-P14398" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/19/P14398/">题解 P1438 【无聊的数列】</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/19/P14398/" class="archive-article-date">
-  	<time datetime="2019-06-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>发现题解中全都用差分的,只有一个不是 <del>(居然撞思路了</del><br>但他没有仔细讲他的思路,与思考过程,那我就为他补充一下吧  </p>
-<h2 id><a href="#" class="headerlink" title></a>
-        
-          <a class="article-more-a" href="/2019/06/19/P14398/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">树状数组</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/19/P14398/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Welcome" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/19/Welcome/">Welcome To My Blog</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/19/Welcome/" class="archive-article-date">
-  	<time datetime="2019-06-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>$ \Huge\color{blue} Welcome $ $ \Huge\color{blue} To $ $ \Huge\color{blue} My $ $ \Huge\color{blue} Blog $<br>花了一个晚上，好累呀<br>$QWQ$  </p>
-<p><strong>加油呀！！！</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">休闲</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/19/Welcome/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-P4641" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/19/P4641/">P4641 【[BJWC2008]序列】</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/19/P4641/" class="archive-article-date">
-  	<time datetime="2019-06-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>极其玄学的题目,好像没几个人通过,那我就讲下我的思路吧,看了下通过的巨佬的$Code$,好像没人和我一样,以下为毒瘤做法,<del>好孩子不要学习</del></p>
-<h2 id><a href="#" class="headerlink" title></a>
-        
-          <a class="article-more-a" href="/2019/06/19/P4641/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/19/P4641/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-P4042" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/18/P4042/">题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/18/P4042/" class="archive-article-date">
-  	<time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,<br>
-        
-          <a class="article-more-a" href="/2019/06/18/P4042/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SPFA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/18/P4042/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-P3369" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/18/P3369/">Treap模板</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/18/P3369/" class="archive-article-date">
-  	<time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://www.luogu.org/problemnew/show/P3369" target="_blank" rel="noopener">普通平衡树</a><br>板子:<br>
-        
-          <a class="article-more-a" href="/2019/06/18/P3369/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BST</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/18/P3369/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-P2286" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/18/P2286/">题解 P2286 【[HNOI2004]宠物收养场</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/18/P2286/" class="archive-article-date">
-  	<time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://www.luogu.org/problemnew/show/P2286" target="_blank" rel="noopener">[HNOI2004]宠物收养场</a>这题就是平衡树的板子<br>但是仍有一些小坑<br>发出来来让大家注意一下<br>
-        
-          <a class="article-more-a" href="/2019/06/18/P2286/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BST</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/18/P2286/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-P4879" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/18/P4879/">题解 P4879 【ycz的妹子】</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/18/P4879/" class="archive-article-date">
-  	<time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当我去年啥都不会的时候做了这道题,然后爆零了<br>如今想了起来,作文以记之  </p>
-<h2 id><a href="#" class="headerlink" title></a>
-        
-          <a class="article-more-a" href="/2019/06/18/P4879/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">树状数组</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/18/P4879/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-P5338" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/18/P5338/">题解 P5338 【[TJOI2019]甲苯先生的滚榜】</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/18/P5338/" class="archive-article-date">
-  	<time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>平衡树板子题<br>不用担心 暴力删点 加点 开$O2$能过<br>
-        
-          <a class="article-more-a" href="/2019/06/18/P5338/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BST</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/18/P5338/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Splay" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/18/Splay/">Splay</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/18/Splay/" class="archive-article-date">
-  	<time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="初号机"><a href="#初号机" class="headerlink" title="初号机"></a>初号机</h1>
-        
-          <a class="article-more-a" href="/2019/06/18/Splay/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BST</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/18/Splay/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://zljust.github.io/2019/06/21/从零开始的状压DP/", 
+    sourceId: "从零开始的状压DP",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+  
+
+  
+
   
 
 
@@ -941,8 +380,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
