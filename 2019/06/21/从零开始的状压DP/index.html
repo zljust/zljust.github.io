@@ -17,7 +17,7 @@
 <meta property="og:description" content="啥，你说呢不知道什么叫做状压$DP$，没关系，我也不知道     本文包教包会，学会了记得点个赞">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2019/06/21/5d0cb7f04ffac18834.png">
-<meta property="og:updated_time" content="2019-06-21T11:38:32.951Z">
+<meta property="og:updated_time" content="2019-06-21T14:33:05.550Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始的状压DP">
 <meta name="twitter:description" content="啥，你说呢不知道什么叫做状压$DP$，没关系，我也不知道     本文包教包会，学会了记得点个赞">
@@ -189,7 +189,7 @@
 d(S)=min \left\{\right.\ |P_iP_j| +\ d( S- \left\{\right. i \left.\right\}-\left\{\right.j \left. \right\}\ ) \left. \right\},i\in S,j\in S</script><p>那么决策数为$n^2$，状态数为$2^n$，总复杂度为$O(n^22^n)$   </p>
 <p>是不是感受到了$DP$的魅力</p>
 <p>不过我们发现,<strong>当状态为$S$时，我们不管先选择哪个点作为$i$，它迟早都要被选择</strong>,举个栗子吧  </p>
-<p>我们有点集{$1$,$2$,$3$$4$}(集合中为点的编号)，我先枚举第一个点，再枚举选择的第二个点，可第一个点就算选了$1$,而不选$2$，$2$也会在下一个状态中出现，并尝试与$3$,$4$点配对  </p>
+<p>我们有点集{$1$,$2$,$3$,$4$}(集合中为点的编号)，我先枚举第一个点，再枚举选择的第二个点，可第一个点就算选了$1$,而不选$2$，$2$也会在下一个状态中出现，并尝试与$3$,$4$点配对  </p>
 <p><img src="https://i.loli.net/2019/06/21/5d0cb7f04ffac18834.png" alt></p>
 <p>而$1$已经在第一轮与$2$尝试配对,并不会漏选状态，也就是说<strong>当有状态$S$时，我们只需要找出任意一个点，并枚举其他点与之配对，将决策数减少到了$n$</strong>,那那任意的一个点选哪个好呢?为了方便，我们就选集合中编号最小的一个点吧,状态转移方程就是</p>
 <script type="math/tex; mode=display">
@@ -313,8 +313,8 @@ d(S)=\ d(S\ -\left\{\right. i \left. \right\} )+1,i=min\ S</script><p>对于$F(i
 <nav id="article-nav">
   
   
-    <a href="/2019/06/19/P14398/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">题解 P1438 【无聊的数列】</div>
+    <a href="/2019/06/19/Welcome/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Welcome To My Blog</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -472,7 +472,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">树状数组</a>
+                <a href="javascript:void(0)" class="js-tag color5">SPFA</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,7 +480,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SPFA</a>
+                <a href="javascript:void(0)" class="js-tag color5">树状数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,21 +629,5 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
