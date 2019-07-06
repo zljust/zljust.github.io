@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://zljust.github.io">
-  <title>题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】 | zl_just</title>
+  <title>Tag: 线段树 | zl_just</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,">
-<meta name="keywords" content="题解,SPFA">
-<meta property="og:type" content="article">
-<meta property="og:title" content="题解 P4042 【[AHOI2014&#x2F;JSOI2014]骑士游戏】">
-<meta property="og:url" content="http://zljust.github.io/2019/06/18/P4042/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="zl_just">
+<meta property="og:url" content="http://zljust.github.io/tags/线段树/index.html">
 <meta property="og:site_name" content="zl_just">
-<meta property="og:description" content="首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-06-21T15:10:37.369Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="题解 P4042 【[AHOI2014&#x2F;JSOI2014]骑士游戏】">
-<meta name="twitter:description" content="首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,">
+<meta name="twitter:title" content="zl_just">
   
     <link rel="alternative" href="/atom.xml" title="zl_just" type="application/atom+xml">
   
@@ -155,196 +150,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-P4042" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      题解 P4042 【[AHOI2014/JSOI2014]骑士游戏】
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/07/06/线段树套平衡树/" class="archive-article-date">
+  	<time datetime="2019-07-06T15:55:05.829Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-06</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/07/06/线段树套平衡树/">线段树套平衡树--Treap</a>
     </h1>
   
 
-        
-        <a href="/2019/06/18/P4042/" class="archive-article-date">
-  	<time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先从$DP$角度分析这题, 用$d[i]$表示杀死怪物$i$所需的最低花费,<br><a id="more"></a><br> $k[i]$为膜法杀死$i$所需的花费, $s[i]$为站撸所需的花费, $e[i][j]$为撸死怪物$i$后产生的第$j$个怪物, 那么我们有状态转移方程<br>$d[i]=min(k[i],s[i]+\displaystyle \sum^{R[i]}_{j=1}{d[e[i][j]]})$<br>但是这样做有一个明显的$Bug$，万一撸死的怪物又能直接(或间接)产生它自身，递归就会陷入死循环，也就是有环，无法用$DP$解决<br>于是你<del>不小心</del>地点开了算法标签，满脸懵逼的你看见了$SPFA$, 于是尝试开始建模，可怎么也想不到该怎么连边，该怎么跑最短路<br><del>好吧，这其实是我的经历</del></p>
-<h3 id="正言"><a href="#正言" class="headerlink" title="正言"></a>正言</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(SPFA)多见于最大(小)问题中,在求解是会发现存在环,其模型是带环的图.其特点是节点间没有相互依赖关系,而且其最优值的传递不会产生后效性,大都满足最原始的三角不等式.因此我们可以使用类似的最短路的方法通过较优解之间的相互比较,相互跟新来得出全部节点的最优解</span><br><span class="line">                                   --&lt;&lt;一本通&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>好了,相信有了这句话,聪明的你就一定可以解决$Ta$了 </p>
-<hr>
-<p><strong>当我们更新$i$时,我们也应该将撸死后能产生$i$的怪物塞入队列中进行更新,因为其父节点可能会受影响被更新，所以应该反向建边，如此迭代后，就能得到最优解</strong><br>不懂的话详见$code$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">200000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1000000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v,next;</span><br><span class="line">&#125;e[maxm],fe[maxm];</span><br><span class="line"><span class="comment">//f前缀代表反向边相关</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[maxn],fhead[maxn];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> d[maxn],s[maxn];</span><br><span class="line"><span class="keyword">bool</span> inp[maxn];</span><br><span class="line"><span class="keyword">int</span> en,fen;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    e[++en].next=head[u];</span><br><span class="line">    e[en].v=v; head[u]=en;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">fadd</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    fe[++fen].next=fhead[u];</span><br><span class="line">    fe[fen].v=v; fhead[u]=fen;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">SPFA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) q.push(i);</span><br><span class="line">    <span class="comment">//先全部塞入队列,初始值为膜法费用</span></span><br><span class="line">    <span class="comment">//通过比较得到较优解,直至最优解</span></span><br><span class="line">    <span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> u=q.front(); q.pop();</span><br><span class="line">        inp[u]=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> res=s[u];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=e[i].next)</span><br><span class="line">            res+=d[e[i].v];</span><br><span class="line">        <span class="keyword">if</span>(res&lt;d[u]) &#123;</span><br><span class="line">        <span class="comment">//比较子节点与自身的费用</span></span><br><span class="line">            d[u]=res;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=fhead[u];i;i=fe[i].next) <span class="keyword">if</span>(inp[fe[i].v]) &#123;</span><br><span class="line">            <span class="comment">//将其父节点塞入队列再更新</span></span><br><span class="line">                q.push(fe[i].v); inp[fe[i].v]=<span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d[<span class="number">1</span>];</span><br><span class="line">    <span class="comment">//d[i]就表示完全杀死一只i的最低费用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c; a=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>((a=getchar()-<span class="string">'0'</span>)) <span class="keyword">if</span>(a&gt;=<span class="number">0</span>&amp;&amp;a&lt;=<span class="number">9</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">while</span>((c=getchar())) &#123;</span><br><span class="line">        <span class="keyword">if</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>) <span class="keyword">break</span>;</span><br><span class="line">        a=(a&lt;&lt;<span class="number">3</span>)+(a&lt;&lt;<span class="number">1</span>)+c-<span class="string">'0'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> r,v;</span><br><span class="line">    read(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        read(s[i]); read(d[i]); read(r);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;r;j++) &#123;</span><br><span class="line">            read(v); add(i,v); fadd(v,i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,SPFA());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线段树</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SPFA</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">平衡树</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">树套树</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://zljust.github.io/2019/06/18/P4042/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/06/18/Splay/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Splay
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/06/18/P3369/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Treap模板</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://zljust.github.io/2019/06/18/P4042/", 
-    sourceId: "P4042",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -367,9 +234,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
