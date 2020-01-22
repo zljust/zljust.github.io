@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://zljust.github.io">
-  <title>题解 P1438 【无聊的数列】 | zl_just</title>
+  <title>Tag: 漫评 | zl_just</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="发现题解中全都用差分的,只有一个不是 (居然撞思路了但他没有仔细讲他的思路,与思考过程,那我就为他补充一下吧">
-<meta name="keywords" content="题解,树状数组">
-<meta property="og:type" content="article">
-<meta property="og:title" content="题解 P1438 【无聊的数列】">
-<meta property="og:url" content="http://zljust.github.io/2019/06/19/P1438/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="zl_just">
+<meta property="og:url" content="http://zljust.github.io/tags/漫评/index.html">
 <meta property="og:site_name" content="zl_just">
-<meta property="og:description" content="发现题解中全都用差分的,只有一个不是 (居然撞思路了但他没有仔细讲他的思路,与思考过程,那我就为他补充一下吧">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-06-21T15:10:27.577Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="题解 P1438 【无聊的数列】">
-<meta name="twitter:description" content="发现题解中全都用差分的,只有一个不是 (居然撞思路了但他没有仔细讲他的思路,与思考过程,那我就为他补充一下吧">
+<meta name="twitter:title" content="zl_just">
   
     <link rel="alternative" href="/atom.xml" title="zl_just" type="application/atom+xml">
   
@@ -155,193 +150,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-P1438" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      题解 P1438 【无聊的数列】
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/01/22/JoJo/" class="archive-article-date">
+  	<time datetime="2020-01-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/01/22/JoJo/">JoJo观后感</a>
     </h1>
   
 
-        
-        <a href="/2019/06/19/P1438/" class="archive-article-date">
-  	<time datetime="2019-06-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>发现题解中全都用差分的,只有一个不是 <del>(居然撞思路了</del><br>但他没有仔细讲他的思路,与思考过程,那我就为他补充一下吧  </p>
-<h2 id><a href="#" class="headerlink" title></a><a id="more"></a></h2><p>遇到这种题型不用慌,要不是差分,要不就是<strong>拆</strong>,也可以称为<strong>分离常数</strong>,我们假设原数列中有一个数$a[i]$,我们再$[l,r]$$(i$属于$[l,r])$中加了一个首项为$k$,公差为$d$的数列,那么我们易知<br>$a[i]=a[i]+k+(i-l)<em>d$<br>继续化简得<br>$a[i]=a[i]+k-d</em>l+i<em>d=a[i]+(k-d</em>l)+i<em>d$<br>我们发现 <em>*对于括号中的部分</em></em> 与这个数所在的位置无关,也就意味着可以将这个区间直接加上这个数,而对于另一部分,我们把$i$与$d$拆开,用另一个线段树维护$d$,因为是单点查询,我们只要将维护的$d[i]$乘上当前位置$i$,再加上第一个维护的线段树的查询结果就可以了<br>为了方便我写了一个模板，避免了写两棵线段树<br>$Code$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">read</span><span class="params">(T&amp; a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c,f=<span class="number">1</span>;  a=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>((c=getchar()))  &#123;</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="string">'-'</span>) f=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        a=a*<span class="number">10</span>+c-<span class="string">'0'</span>;</span><br><span class="line">        c=getchar();</span><br><span class="line">    &#125;<span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>);</span><br><span class="line">    <span class="keyword">return</span> a*=f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">100000</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tree</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> s[maxn&lt;&lt;<span class="number">2</span>],add[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lc</span><span class="params">(<span class="keyword">int</span> o)</span> </span>&#123; <span class="keyword">return</span> o&lt;&lt;<span class="number">1</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">rc</span><span class="params">(<span class="keyword">int</span> o)</span> </span>&#123; <span class="keyword">return</span> (o&lt;&lt;<span class="number">1</span>)|<span class="number">1</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; <span class="built_in">memset</span>(s,<span class="number">0</span>,<span class="keyword">sizeof</span> s); <span class="built_in">memset</span>(add,<span class="number">0</span>,<span class="keyword">sizeof</span> add); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> o,<span class="keyword">int</span> L,<span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        add[o]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(L==R) <span class="keyword">return</span> read(s[o]);</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> s[o]=build(lc(o),L,mid)+build(rc(o),mid+<span class="number">1</span>,R);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> o,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> _add)</span> </span>&#123;</span><br><span class="line">        s[o]+=(R-L+<span class="number">1</span>)*_add; add[o]+=_add;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> o,<span class="keyword">int</span> L,<span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!add[o]) <span class="keyword">return</span> ;</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        change(lc(o),L,mid,add[o]); change(rc(o),mid+<span class="number">1</span>,R,add[o]);</span><br><span class="line">        add[o]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updata</span><span class="params">(<span class="keyword">int</span> o,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> _add)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l&lt;=L&amp;&amp;r&gt;=R) <span class="keyword">return</span> change(o,L,R,_add);</span><br><span class="line">        pushdown(o,L,R);</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(l&lt;=mid) updata(lc(o),L,mid,l,r,_add);</span><br><span class="line">        <span class="keyword">if</span>(r&gt;mid) updata(rc(o),mid+<span class="number">1</span>,R,l,r,_add);</span><br><span class="line">        s[o]=s[lc(o)]+s[rc(o)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> o,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(L==R) <span class="keyword">return</span> s[o];</span><br><span class="line">        pushdown(o,L,R);</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;=mid) <span class="keyword">return</span> query(lc(o),L,mid,x);</span><br><span class="line">        <span class="keyword">return</span> query(rc(o),mid+<span class="number">1</span>,R,x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line">Tree t1,t2;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">register</span> <span class="keyword">int</span> c,l,r,k,d;</span><br><span class="line">    read(n); read(m);</span><br><span class="line">    t1.build(<span class="number">1</span>,<span class="number">1</span>,n); t2.clear();</span><br><span class="line">    <span class="keyword">while</span>(m--) &#123;</span><br><span class="line">        read(c); read(l);</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="number">1</span>) &#123;</span><br><span class="line">            read(r); read(k); read(d);</span><br><span class="line">            t1.updata(<span class="number">1</span>,<span class="number">1</span>,n,l,r,k-l*d);</span><br><span class="line">            t2.updata(<span class="number">1</span>,<span class="number">1</span>,n,l,r,d);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,t1.query(<span class="number">1</span>,<span class="number">1</span>,n,l)+t2.query(<span class="number">1</span>,<span class="number">1</span>,n,l)*l);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>我们发现只需要会线段树的基本操作，并不需要维护两个标记,代码还简短,思路又简单 <del>(只是跑得没树状数组快</del><br>有了这个思想你就可以<strong>用两颗树状数组维护区间修改$+$区间查询了</strong><br>赶快动手吧，这儿有一道用到这个思想的<a href="https://www.luogu.org/problemnew/show/P4868" target="_blank" rel="noopener">例题</a></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">休闲</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">树状数组</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漫评</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://zljust.github.io/2019/06/19/P1438/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/06/21/从零开始的状压DP/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          从零开始的状压DP
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/06/19/P4641/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">P4641 【[BJWC2008]序列】</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://zljust.github.io/2019/06/19/P1438/", 
-    sourceId: "P1438",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -364,9 +230,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -455,19 +321,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">题解</a>
+                <a href="javascript:void(0)" class="js-tag color3">休闲</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">树状数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SPFA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">note</a>
+                <a href="javascript:void(0)" class="js-tag color3">漫评</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,15 +333,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">其他</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">休闲</a>
+                <a href="javascript:void(0)" class="js-tag color5">note</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">树链剖分</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,10 +354,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树套树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">树链剖分</a>
               </li>
             
             <div class="clearfix"></div>

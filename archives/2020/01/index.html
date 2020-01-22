@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://zljust.github.io">
-  <title>题解 P5338 【[TJOI2019]甲苯先生的滚榜】 | zl_just</title>
+  <title>Archives: 2020/1 | zl_just</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="平衡树板子题不用担心 暴力删点 加点 开$O2$能过">
-<meta name="keywords" content="题解,BST">
-<meta property="og:type" content="article">
-<meta property="og:title" content="题解 P5338 【[TJOI2019]甲苯先生的滚榜】">
-<meta property="og:url" content="http://zljust.github.io/2019/06/18/P5338/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="zl_just">
+<meta property="og:url" content="http://zljust.github.io/archives/2020/01/index.html">
 <meta property="og:site_name" content="zl_just">
-<meta property="og:description" content="平衡树板子题不用担心 暴力删点 加点 开$O2$能过">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:updated_time" content="2019-06-21T15:10:49.463Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="题解 P5338 【[TJOI2019]甲苯先生的滚榜】">
-<meta name="twitter:description" content="平衡树板子题不用担心 暴力删点 加点 开$O2$能过">
+<meta name="twitter:title" content="zl_just">
   
     <link rel="alternative" href="/atom.xml" title="zl_just" type="application/atom+xml">
   
@@ -155,197 +150,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-P5338" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      题解 P5338 【[TJOI2019]甲苯先生的滚榜】
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/01/22/JoJo/" class="archive-article-date">
+  	<time datetime="2020-01-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/01/22/JoJo/">JoJo观后感</a>
     </h1>
   
 
-        
-        <a href="/2019/06/18/P5338/" class="archive-article-date">
-  	<time datetime="2019-06-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>平衡树板子题<br>不用担心 暴力删点 加点 开$O2$能过<br><a id="more"></a><br>反正省选能开 <del>为什么$NOIP$没有</del></p>
-<h3 id="First"><a href="#First" class="headerlink" title="First"></a>First</h3><p>用一个结构体保存节点<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">kkk</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> ac,rib;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ac==res.ac&amp;&amp;rib==res.rib;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ac&gt;res.ac||(ac==res.ac&amp;&amp;rib&lt;res.rib);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;= (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>&lt;res||*<span class="keyword">this</span>==res; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><del>我也不知道为什么要用这个名字</del></p>
-<h3 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h3><p>平衡树板子<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">略</span><br></pre></td></tr></table></figure></p>
-<p>见以下代码</p>
-<h2 id="Third-加点-删点"><a href="#Third-加点-删点" class="headerlink" title="Third 加点 删点"></a>Third 加点 删点</h2><p>用$AC[a]$表示$a$的题数,$RIB[b]$表示罚时<br>当$a$ $AC$了一题,罚时为$b$时<br>那我们删点{$AC[a]$,$RIB[a]$}<br>然后加点{$++AC[a]$,$RIB[a]+=b$} 并求排名就可以了   </p>
-<p>完整$CODE$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// luogu-judger-enable-o2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">kkk</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> ac,rib;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> == (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ac==res.ac&amp;&amp;rib==res.rib;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ac&gt;res.ac||(ac==res.ac&amp;&amp;rib&lt;res.rib);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;= (<span class="keyword">const</span> kkk&amp; res) <span class="keyword">const</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>&lt;res||*<span class="keyword">this</span>==res; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> zl_just &#123;</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Treap</span> &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000000</span> + <span class="number">5</span>;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">            T v;</span><br><span class="line">            <span class="keyword">int</span> c,s,r;</span><br><span class="line">            Node *ch[<span class="number">2</span>];</span><br><span class="line">            <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">cmp</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(x==v) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">return</span> v&lt;x;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ch_size</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123; <span class="keyword">return</span> ch[d]==<span class="literal">NULL</span>?<span class="number">0</span>:ch[d]-&gt;s; &#125;</span><br><span class="line">            <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>&#123; s=c+ch_size(<span class="number">0</span>)+ch_size(<span class="number">1</span>); &#125;</span><br><span class="line">        &#125;node[maxn];</span><br><span class="line">        Node* root;</span><br><span class="line">        <span class="keyword">int</span> size;</span><br><span class="line">        Treap() &#123; root=<span class="literal">NULL</span>; size=<span class="number">0</span>; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; root=<span class="literal">NULL</span>; size=<span class="number">0</span>; &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(Node* &amp;o,<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">            Node *k=o-&gt;ch[d^<span class="number">1</span>]; o-&gt;ch[d^<span class="number">1</span>]=k-&gt;ch[d]; k-&gt;ch[d]=o; </span><br><span class="line">            o-&gt;maintain(); k-&gt;maintain(); o=k;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Node* &amp;o,T x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(o==<span class="literal">NULL</span>) &#123;</span><br><span class="line">                o=&amp;node[size++]; o-&gt;r=rand();</span><br><span class="line">                o-&gt;v=x; o-&gt;s=o-&gt;c=<span class="number">1</span>;</span><br><span class="line">                o-&gt;ch[<span class="number">0</span>]=o-&gt;ch[<span class="number">1</span>]=<span class="literal">NULL</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">                <span class="keyword">if</span>(d==<span class="number">-1</span>) &#123; o-&gt;c++; o-&gt;s++; <span class="keyword">return</span> ; &#125;</span><br><span class="line">                insert(o-&gt;ch[d],x); o-&gt;maintain();</span><br><span class="line">                <span class="keyword">if</span>(o-&gt;ch[d]-&gt;r &gt; o-&gt;r) rotate(o,d^<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node* &amp;o,T x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(o==<span class="literal">NULL</span>) <span class="keyword">return</span> ;</span><br><span class="line">            <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">            <span class="keyword">if</span>(d==<span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(o-&gt;c &gt; <span class="number">1</span>) &#123; o-&gt;c--; o-&gt;s--; <span class="keyword">return</span> ; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(o-&gt;ch[<span class="number">0</span>]==<span class="literal">NULL</span>) o=o-&gt;ch[<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(o-&gt;ch[<span class="number">1</span>]==<span class="literal">NULL</span>) o=o-&gt;ch[<span class="number">0</span>];</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">int</span> d2 = (o-&gt;ch[<span class="number">0</span>]-&gt;r &gt; o-&gt;ch[<span class="number">1</span>]-&gt;r);</span><br><span class="line">                    rotate(o,d2); remove(o-&gt;ch[d2],x);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> remove(o-&gt;ch[d],x);</span><br><span class="line">            <span class="keyword">if</span>(o!=<span class="literal">NULL</span>) o-&gt;maintain();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">rank</span><span class="params">(Node *o,T x)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> rk=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(o!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> d=o-&gt;cmp(x);</span><br><span class="line">                <span class="keyword">if</span>(d==<span class="number">-1</span>) <span class="keyword">return</span> rk+o-&gt;ch_size(<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">if</span>(d) rk+=o-&gt;ch_size(<span class="number">0</span>)+o-&gt;c;</span><br><span class="line">                o=o-&gt;ch[d];</span><br><span class="line">            &#125;  </span><br><span class="line">            <span class="keyword">return</span> rk;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//模板</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> zl_just;</span><br><span class="line"><span class="keyword">int</span> AC[<span class="number">1000005</span>],RIB[<span class="number">1000005</span>];</span><br><span class="line">Treap&lt;kkk&gt;treap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> ui;</span><br><span class="line">    <span class="function">ui <span class="title">randNum</span><span class="params">(ui&amp; seed, ui last, <span class="keyword">const</span> ui m)</span> </span>&#123;</span><br><span class="line">    seed = seed * <span class="number">17</span> + last;</span><br><span class="line">    <span class="keyword">return</span> seed % m + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    srand(time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">int</span> T,last=<span class="number">7</span>;</span><br><span class="line">    <span class="comment">//注意了,是开始为7,不是每组数据都重置为7</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        ui n,m,seed;</span><br><span class="line">        treap.clear();</span><br><span class="line">        <span class="built_in">memset</span>(AC,<span class="number">0</span>,<span class="keyword">sizeof</span> AC);</span><br><span class="line">        <span class="built_in">memset</span>(RIB,<span class="number">0</span>,<span class="keyword">sizeof</span> RIB);</span><br><span class="line">        <span class="comment">//数组一定要清干净!!!</span></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;m,&amp;n,&amp;seed);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">register</span> ui i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">            ui a=randNum(seed,last,m),b=randNum(seed,last,m);</span><br><span class="line">            treap.remove(treap.root,(kkk)&#123;AC[a],RIB[a]&#125;);</span><br><span class="line">            AC[a]++; RIB[a]+=b;</span><br><span class="line">            treap.insert(treap.root,(kkk)&#123;AC[a],RIB[a]&#125;);</span><br><span class="line">            <span class="comment">//其实可以便插便查排名</span></span><br><span class="line">            last=treap.rank(treap.root,(kkk)&#123;AC[a],RIB[a]&#125;);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,last);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;	</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">休闲</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BST</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">漫评</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://zljust.github.io/2019/06/18/P5338/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/06/18/Splay/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Splay
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/06/18/P3369/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Treap模板</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://zljust.github.io/2019/06/18/P5338/", 
-    sourceId: "P5338",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -368,8 +230,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
@@ -459,19 +321,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">题解</a>
+                <a href="javascript:void(0)" class="js-tag color3">休闲</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">树状数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SPFA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">note</a>
+                <a href="javascript:void(0)" class="js-tag color3">漫评</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,15 +333,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">其他</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">休闲</a>
+                <a href="javascript:void(0)" class="js-tag color5">note</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">DP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">树链剖分</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,10 +354,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">树套树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">树链剖分</a>
               </li>
             
             <div class="clearfix"></div>
